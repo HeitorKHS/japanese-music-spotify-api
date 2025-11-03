@@ -15,7 +15,7 @@ export function Search(){
     }
 
     return(
-        <div className="relative flex items-center w-full md:w-auto" role="search">
+        <div className="relative flex items-center w-full" role="search">
                  
             <label htmlFor="search-input" className="sr-only">
                 Buscar músicas, artistas e álbuns

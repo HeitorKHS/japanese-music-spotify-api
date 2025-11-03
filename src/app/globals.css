@@ -24,7 +24,7 @@ input[type="search"]::-ms-clear {
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --breakpoint-md: 920px;
+  --breakpoint-md: 1100px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -44,7 +44,14 @@ body {
 
   .custom-container {
     width: 100%;
-    padding-inline: 2rem;
+    padding-inline: 8rem;
+
+  }
+
+  @media (max-width: 1100px) {
+    .custom-container {
+      padding-inline: 2rem;
+    }
   }
 
   .menu-item {

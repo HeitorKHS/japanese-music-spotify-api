@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 import Link from "next/link";
 import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 import { Button } from "../Button/Button";
 
 interface HeaderProps{
@@ -64,21 +63,12 @@ export function Header({ transparent }: HeaderProps){
                         />
                     </Link>
                 </div>
-                {/*Menu Desktop*/}
-                <div className="hidden md:flex items-center justify-between flex-1 ml-10">
+
+                <div className="hidden md:flex items-center justify-between gap-10">
+                    <Search/>
                     <Menu/>
-                    <div className="flex gap-10">
-                        <Search/>
-                        <Button
-                            type="button"
-                            variant="primary"
-                            size="md"
-                            aria-label="Alternar modo escuro"
-                        >
-                            <MdOutlineDarkMode/>
-                        </Button>
-                    </div>    
                 </div>
+
                 {/*Button mobile*/}
                 <div className="md:hidden">
                     <Button
@@ -115,15 +105,6 @@ export function Header({ transparent }: HeaderProps){
                             </div>
                             <Search/>
                             <Menu setMenuOpen={setIsMenuOpen} isMobile/>
-                            <Button
-                                type="button"
-                                variant="primary"
-                                size="md"
-                                aria-label="Alternar modo escuro"
-                                className="self-start mt-10"
-                            >
-                                <MdOutlineDarkMode size={20} />
-                            </Button>
                         </div>
                     </>
                 )}

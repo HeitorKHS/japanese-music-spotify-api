@@ -9,7 +9,7 @@ const menuItems: readonly MenuItem[] = [
     { href: "/", label: "Início" },
     { href: "/music", label: "Músicas" },
     { href: "/artists", label: "Artistas" },
-    { href: "/genres", label: "Gêneros" }
+    { href: "/albums", label: "Álbuns" }
 ] as const;
 
 interface MenuProps{

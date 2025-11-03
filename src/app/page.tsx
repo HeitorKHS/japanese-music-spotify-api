@@ -1,21 +1,17 @@
-import Image from "next/image";
 import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
+import { getHomeData } from "@/services/homeService";
+import { Hero } from "@/components/Hero/Hero";
 
-export default function Home() {
+
+export default async function Home() {
+
+  const data = await getHomeData();
 
   return (
     <div>
       <Header transparent/>
-      <div className="min-h-screen h-screen w-full relative bg-gray-500">
-        {/*<Image
-          src=""
-          alt="J-music Logo"
-          fill
-          className="object-cover"
-          priority
-        />*/}
-      </div>
+      <Hero artist={data.featuredArtistOfDay} />
       <Footer/>
     </div>
   );
