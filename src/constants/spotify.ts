@@ -11,6 +11,7 @@ export const JAPANESE_GENRES = [
   'vocaloid',
   'enka',
   'city pop',
+  'anime',
 ] as const;
 
 // Markets (countries) - JP for Japan
