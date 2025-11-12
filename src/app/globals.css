@@ -45,13 +45,21 @@ body {
 
   .custom-container {
     width: 100%;
-    padding-inline: 8rem;
+    padding-inline: 36px;
+  }
 
+  .content-container {
+    width: 100%;
+    padding-inline: 58px;
   }
 
   @media (max-width: 1100px) {
     .custom-container {
-      padding-inline: 2rem;
+      padding-inline: 20px;
+    }
+
+    .content-container {
+      padding-inline: 40px;
     }
   }
 

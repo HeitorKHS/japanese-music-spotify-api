@@ -12,9 +12,9 @@ const button = tv({
         ],
     variants: {
         variant: {
-            primary: "bg-[#373737] text-white hover:bg-[#373737]/80 active:bg-[#373737]/60 rounded-lg",
-            secondary: "bg-[#1f1f1f] text-[#b3b3b3] hover:bg-[#1f1f1f]/90 hover:text-white active:bg-[#1f1f1f]/70",
-            ghost: "text-[#b0b0b0] hover:text-white hover:bg-white/10 active:bg-white/5 rounded-full"
+            primary: "bg-[#373737] text-white hover:bg-[#373737]/80 rounded-lg",
+            secondary: "bg-[#1f1f1f] text-[#b3b3b3] hover:bg-[#1f1f1f]/90 hover:text-white",
+            ghost: "text-[#b0b0b0] hover:text-white hover:bg-white/10 rounded-full",
         },
         size: {
             sm: "text-sm py-1.5 px-3",

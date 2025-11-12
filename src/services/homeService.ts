@@ -42,13 +42,13 @@ export async function getHomeData(): Promise<HomeData>{
 
         const [tokyoTracks, womenTracks] = await Promise.all([getTokyoSuperHits(), getWomenVoice()]);
        
-        const uniqueArtists = await extractUniqueArtists(tokyoTracks, 6);
+        const uniqueArtists = await extractUniqueArtists(tokyoTracks, 11);
 
         return{
             featuredArtistOfDay: uniqueArtists[0] || null,
-            featuredArtistsOfWeek: uniqueArtists.slice(1, 6),
-            featuredTracksOfWeek: tokyoTracks.slice(0, 5),
-            featuredWomenTracks: womenTracks.slice(0, 5),
+            featuredArtistsOfWeek: uniqueArtists.slice(1, 11),
+            featuredTracksOfWeek: tokyoTracks.slice(0, 10),
+            featuredWomenTracks: womenTracks.slice(0, 10),
             allTokyoTracks: tokyoTracks,  
             allWomenTracks: womenTracks,
         }

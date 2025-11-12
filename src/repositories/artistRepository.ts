@@ -47,6 +47,7 @@ export async function getArtistTopAlbums(artistId: string): Promise<SpotifyAlbum
 
 //Get all the artist's albums
 export async function getAllArtistAlbums(artistId: string) : Promise<SpotifyAlbum[]>{
+    
     let allAlbums: SpotifyAlbum[] = [];
     let offset = 0;
     const limit = 50;

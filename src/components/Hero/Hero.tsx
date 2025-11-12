@@ -6,13 +6,11 @@ import { LuUsers, LuTrendingUp, LuInfo } from "react-icons/lu";
 
 
 interface HeroProps{
-    artist: SpotifyArtist | null;
+    artist: SpotifyArtist | null,
 }
 
 export function Hero( {artist}: HeroProps){
-
-    console.log(artist);
-
+    
     return(
 
         <div className="relative min-h-screen w-full">
@@ -23,7 +21,7 @@ export function Hero( {artist}: HeroProps){
                     src={"/img/hero.jpg"}
                     alt={"Hero Background"}
                     fill
-                    className="Object-cover"
+                    className="object-cover"
                     priority
                 />  
             </div>
@@ -32,7 +30,7 @@ export function Hero( {artist}: HeroProps){
             
             {/*Artist information*/}
             <div className="relative flex min-h-screen pt-[59px] md:pt-[64px] z-20">
-                <div className="custom-container pt-20 pb-15 md:grid md:grid-rows-1 md:grid-cols-2 gap-10 items-center">
+                <div className="content-container pt-20 pb-15 md:grid md:grid-rows-1 md:grid-cols-2 gap-10 items-center">
                     {/*Left information*/}
                     <div className="flex flex-col gap-6">
 
@@ -64,7 +62,7 @@ export function Hero( {artist}: HeroProps){
                             )}
                         </div>
 
-                        <div className="flex flex-col md:flex-row gap-6 mt-15">
+                        <div className="flex flex-col md:flex-row gap-6 mt-10">
                             <Link
                                 href={`/artist/${artist?.id || "/"}`}
                                 className="flex-1 flex gap-4 items-center justify-center border boder-bg-white/30 font-bold px-6 py-3 rounded-full background-blur-sm bg-white/5"
