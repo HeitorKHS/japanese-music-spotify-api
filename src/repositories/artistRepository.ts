@@ -26,12 +26,13 @@ export async function getArtistById(artistId: string): Promise<SpotifyArtist>{
     return await spotifyFetch<SpotifyArtist>(`/artists/${artistId}`);
 }
 
-//Find the top 5 most popular albums by an artist
-export async function getArtistTopAlbums(artistId: string): Promise<SpotifyAlbum[]>{
+//Find the 5 albums by an artist
+export async function getArtistFiveAlbums(artistId: string): Promise<SpotifyAlbum[]>{
 
     const query = buildQueryString({
         market: SPOTIFY_MARKET,
-        limit: 50,
+        include_groups: "album",
+        limit: 5,
     });
 
     const response = await spotifyFetch<SpotifyPagination<SpotifyAlbum>>(
@@ -39,9 +40,40 @@ export async function getArtistTopAlbums(artistId: string): Promise<SpotifyAlbum
     );
 
     return response.items
-    .filter(album => album.popularity && album.popularity > 0) //Check if the album has the popularity property and if it is greater than 0
-    .sort((a, b) => (b.popularity || 0) - (a.popularity || 0)) //Sorts the items in the array based on the comparison function
-    .slice(0, 5); //Select the first 5
+
+}
+
+//Find the 5 singles and eps by an artist
+export async function getArtistFiveSinglesAndEps(artistId: string): Promise<SpotifyAlbum[]>{
+
+    const query = buildQueryString({
+        market: SPOTIFY_MARKET,
+        include_groups: "single",
+        limit: 5,
+    });
+
+    const response = await spotifyFetch<SpotifyPagination<SpotifyAlbum>>(
+        `/artists/${artistId}/albums${query}`
+    );
+
+    return response.items
+
+}
+
+//Find the 5 albums, singles, and EPs that this artist appears on
+export async function getArtistFiveAppearsOn(artistId: string): Promise<SpotifyAlbum[]>{
+
+    const query = buildQueryString({
+        market: SPOTIFY_MARKET,
+        include_groups: "appears_on",
+        limit: 5,
+    });
+
+    const response = await spotifyFetch<SpotifyPagination<SpotifyAlbum>>(
+        `/artists/${artistId}/albums${query}`
+    );
+
+    return response.items
 
 }
 
@@ -77,7 +109,7 @@ export async function getAllArtistAlbums(artistId: string) : Promise<SpotifyAlbu
 }
 
 //Search for the artist's top tracks
-export async function getArtistTopTrack(artistId: string): Promise<SpotifyTrack[]>{
+export async function getArtistTopTracks(artistId: string): Promise<SpotifyTrack[]>{
 
     const query = buildQueryString({
         market: SPOTIFY_MARKET,

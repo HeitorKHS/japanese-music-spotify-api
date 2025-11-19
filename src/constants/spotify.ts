@@ -17,9 +17,10 @@ export const JAPANESE_GENRES = [
 // Markets (countries) - JP for Japan
 export const SPOTIFY_MARKET = 'JP';
 
-// Playlist Tokyo Super Hits
+// Playlist
 export const TOKYO_SUPER_HITS_ID = '0KgrxJF5QFmJViO5TJEfLr';
 export const JAPANESE_WOMEN_ID = '11WH19OqPnO6LAYKGJKYlJ';
+export const ROCK_JAPAN_ID = '59sn8iwLmvqjO83uT4w29S';
 
 // Pagination settings
 export const PAGINATION = {

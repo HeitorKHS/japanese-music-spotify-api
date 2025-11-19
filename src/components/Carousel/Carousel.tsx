@@ -3,6 +3,7 @@
 import { Button } from "../Button/Button";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
+import Link from "next/link";
 
 interface CarouselProps<T>{
     items: T[],
@@ -143,8 +144,9 @@ export function Carousel<T>({items, title, ItemComponent, keyExtractor}: Carouse
     return(
 
         <div className="relative pt-5 pb-10" aria-label={title}>
-            <div className="content-container mb-3">
-                <h4 className="text-2xl font-semibold">{title}</h4>
+            <div className="content-container flex items-end justify-between mb-3">
+                <h4 className="md:text-32xl font-semibold">{title}</h4>
+                <Link href={"/"} className="text-sm md:text-base hover:text-white hover:underline text-white/60"> Mostrar tudo</Link>
             </div>
             <div 
                 className="content-container overflow-x-hidden"

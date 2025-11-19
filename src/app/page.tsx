@@ -8,22 +8,26 @@ import { TrackCarouselSection } from "@/components/Carousel/TrackCarouselSection
 export default async function Home() {
 
   const data = await getHomeData();
-
+  const { featuredArtistOfDay, featuredArtistsOfWeek, featuredTracksOfWeek, featuredWomenTracks, featuredRockTracks } = data;
   return (
     <div>
       <Header transparent/>
-      <Hero artist={data.featuredArtistOfDay} />
+      <Hero artist={featuredArtistOfDay} />
       <ArtistCaroulseSection 
-        artists={data.featuredArtistsOfWeek} 
+        artists={featuredArtistsOfWeek} 
         title={"Top 10 artistas da semana"} 
       /> 
       <TrackCarouselSection
-        tracks={data.featuredTracksOfWeek}
+        tracks={featuredTracksOfWeek}
         title={"Top 10 músicas da semana"}
       />
       <TrackCarouselSection
-        tracks={data.featuredWomenTracks}
+        tracks={featuredWomenTracks}
         title={"Vocal Feminino"}
+      />
+      <TrackCarouselSection
+        tracks={featuredRockTracks}
+        title={"O melhor do rock japonês"}
       />
       <Footer/>
     </div>

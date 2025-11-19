@@ -94,10 +94,8 @@ export function Hero( {artist}: HeroProps){
                             />
                         </div>
                     </div>
-
                 
                 </div>
-
             </div>
         </div>
 

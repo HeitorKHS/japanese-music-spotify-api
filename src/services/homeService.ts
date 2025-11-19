@@ -1,4 +1,4 @@
-import { getTokyoSuperHits, getWomenVoice } from "@/repositories/playlistRepository";
+import { getTokyoSuperHits, getWomenVoice, getRockJapan } from "@/repositories/playlistRepository";
 import { getArtistById } from "@/repositories/artistRepository";
 import { SpotifyArtist, SpotifyTrack } from "@/types/spotify";
 
@@ -7,8 +7,10 @@ export interface HomeData{
     featuredArtistsOfWeek: SpotifyArtist[];
     featuredTracksOfWeek: SpotifyTrack[];
     featuredWomenTracks: SpotifyTrack[];
+    featuredRockTracks: SpotifyTrack[];
     allTokyoTracks: SpotifyTrack[];  
-    allWomenTracks: SpotifyTrack[]; 
+    allWomenTracks: SpotifyTrack[];
+    allRockTracks: SpotifyTrack[]; 
 }
 
 async function extractUniqueArtists(tracks: SpotifyTrack[], limit: number): Promise<SpotifyArtist[]> {
@@ -40,7 +42,7 @@ export async function getHomeData(): Promise<HomeData>{
 
     try{
 
-        const [tokyoTracks, womenTracks] = await Promise.all([getTokyoSuperHits(), getWomenVoice()]);
+        const [tokyoTracks, womenTracks, rockTracks] = await Promise.all([getTokyoSuperHits(), getWomenVoice(), getRockJapan()]);
        
         const uniqueArtists = await extractUniqueArtists(tokyoTracks, 11);
 
@@ -49,8 +51,10 @@ export async function getHomeData(): Promise<HomeData>{
             featuredArtistsOfWeek: uniqueArtists.slice(1, 11),
             featuredTracksOfWeek: tokyoTracks.slice(0, 10),
             featuredWomenTracks: womenTracks.slice(0, 10),
+            featuredRockTracks: rockTracks.slice(0, 10),
             allTokyoTracks: tokyoTracks,  
             allWomenTracks: womenTracks,
+            allRockTracks: rockTracks,
         }
 
     } catch (error){
@@ -60,8 +64,10 @@ export async function getHomeData(): Promise<HomeData>{
             featuredArtistsOfWeek: [],
             featuredTracksOfWeek: [],
             featuredWomenTracks: [],
+            featuredRockTracks: [],
             allTokyoTracks: [],  
             allWomenTracks: [],
+            allRockTracks: [],
         }
     }
 

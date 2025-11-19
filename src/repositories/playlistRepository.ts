@@ -1,5 +1,5 @@
 import { spotifyFetch, buildQueryString } from "@/lib/spotify/client";
-import { TOKYO_SUPER_HITS_ID, JAPANESE_WOMEN_ID } from "@/constants/spotify";
+import { TOKYO_SUPER_HITS_ID, JAPANESE_WOMEN_ID, ROCK_JAPAN_ID } from "@/constants/spotify";
 import { SpotifyTrack } from "@/types/spotify";
 
 interface PlaylistTrack{
@@ -35,4 +35,9 @@ export async function getTokyoSuperHits(): Promise<SpotifyTrack[]>{
 //Women Voice
 export async function getWomenVoice(): Promise<SpotifyTrack[]>{
     return await getPlaylistTracks(JAPANESE_WOMEN_ID);
+}
+
+//Rock japan
+export async function getRockJapan(): Promise<SpotifyTrack[]>{
+    return await getPlaylistTracks(ROCK_JAPAN_ID);
 }

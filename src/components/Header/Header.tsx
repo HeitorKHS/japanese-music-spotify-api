@@ -45,8 +45,7 @@ export function Header({ transparent }: HeaderProps){
     return(
 
         <header 
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ease-out
-                ${transparent ? `bg-gradient-to-b from-[var(--color-background)] to-transparent ${isScrolled ? 'bg-[var(--color-background)]' : ''}`
+            className={`${transparent ? `fixed top-0 left-0 right-0 z-50 transition-all duration-400 ease-out bg-gradient-to-b from-[var(--color-background)] to-transparent ${isScrolled ? 'bg-[var(--color-background)]' : ''}`
                 : 'bg-[var(--color-background)]' 
             }`}>
             <div className="custom-container py-3 flex items-center justify-between">
