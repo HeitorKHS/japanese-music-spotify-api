@@ -16,55 +16,50 @@ export default async function Artist({params}: ArtistProps){
     const data = await getArtistData(id);
     const { artist, topTracks, fiveAlbums, fiveSinglesAndEps, fiveAppearsOn } = data;
 
-    console.log(fiveAlbums);
-
     return(
 
         <div className="min-h-screen w-full">
             
             {/*Artist hero*/}
-            <div className="relative h-[calc(100vh-59px)] md:h-[calc(100vh-64px)] flex items-end">
+            <div className="relative h-screen flex items-center">
                 {/*Image background*/}
-                <div className="absolute inset-0 z-0">
-                    <Image 
-                        src={artist?.images?.[0].url || ""}
-                        alt={artist?.name || "Artist"}
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                </div>
-                <div className="overlay z-10"/>
+                <Image
+                    src={artist?.images?.[0].url || ""}
+                    alt={artist?.name || "Artist"}
+                    fill
+                    className="object-cover -z-10"
+                    priority
+                />
+                <div className="overlay z-10" />
                 {/*Content hero*/}
-                <div className="content-container flex flex-col md:flex-row items-center md:items-end pb-20 gap-10 z-20">
-                    <div className="relative aspect-square w-full max-w-[300px] border-3 border-white/30 rounded-3xl overflow-hidden">
+                <div className="content-container relative flex flex-col md:flex-row gap-10 pt-[59px] md:pt-[64px] z-20">
+                    <div className="relative w-full max-w-[350px] aspect-square border-3 border-white/30 rounded-3xl overflow-hidden">
                         <Image
                             src={artist?.images?.[0].url || ""}
                             alt={artist?.name || "Artist"}
                             fill
-                            className="object-cover "
+                            className="object-cover"
                             priority
-                        />     
+                        />
                     </div>
-                    <div>
-                        <h1 className="text-4xl sm:text-5xl md:text-8xl font-semibold pb-5">{artist?.name}</h1>
-                        <h2 className="text-lg text-gray-300 pb-5">{artist?.followers?.total.toLocaleString('pt-BR')} Seguidores</h2>
+                    <div className="flex flex-col justify-end">
+                        <span className="text-4xl font-semibold pb-5">{artist?.name}</span>
+                        <span className="text-lg text-white/60 pb-5">{artist?.followers?.total.toLocaleString('pt-BR')} Seguidores</span>
                     </div>
                 </div>
-
             </div>
 
             {/*Content artist*/}
             <div className="content-container">
 
                 {/*Artist top tracks*/}
-                <div className="pb-15">
+                <div className="pt-10 pb-10">
                     <h2 className="text-2xl md:text-3xl font-semibold pb-5">Populares</h2>
                     <ListTrack tracks={topTracks} />
                 </div>
 
                 {/*Artist albums, singles and EPs*/}
-                <div className="md:pt-10 pb-15">
+                <div className="md:pt-10 pb-10">
                     <div className="flex items-end justify-between pb-5">
                         <h2 className="text-2xl md:text-3xl font-semibold">Discografia</h2>
                         <Link href={"/"} className="text-sm md:text-base hover:text-white hover:underline text-white/60"> Mostrar tudo</Link>
@@ -80,13 +75,12 @@ export default async function Artist({params}: ArtistProps){
                 </div>
 
                 {/*Appears on*/}
-                <div className="md:pt-10 pb-15">
+                <div className="md:pt-10 pb-20">
                     <div className="flex items-end justify-between pb-5">
                         <h2 className="text-2xl md:text-3xl font-semibold">Aparece em</h2>
                         <Link href={"/"} className="text-sm md:text-base hover:text-white hover:underline text-white/60"> Mostrar tudo</Link>
                     </div>
-                    
-                    <div className="pt-5 pb-10">
+                    <div className="pt-5">
                         <ListAlbum albums={fiveAppearsOn}/>
                     </div>                      
                 </div>

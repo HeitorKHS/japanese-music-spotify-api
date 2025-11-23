@@ -11,7 +11,6 @@ export default async function Home() {
   const { featuredArtistOfDay, featuredArtistsOfWeek, featuredTracksOfWeek, featuredWomenTracks, featuredRockTracks } = data;
   return (
     <div>
-      <Header transparent/>
       <Hero artist={featuredArtistOfDay} />
       <ArtistCaroulseSection 
         artists={featuredArtistsOfWeek} 
@@ -29,7 +28,6 @@ export default async function Home() {
         tracks={featuredRockTracks}
         title={"O melhor do rock japonês"}
       />
-      <Footer/>
     </div>
   );
 }

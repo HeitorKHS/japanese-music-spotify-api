@@ -8,11 +8,7 @@ import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Button } from "../Button/Button";
 
-interface HeaderProps{
-    transparent?: boolean;
-}
-
-export function Header({ transparent }: HeaderProps){
+export function Header(){
 
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -45,9 +41,8 @@ export function Header({ transparent }: HeaderProps){
     return(
 
         <header 
-            className={`${transparent ? `fixed top-0 left-0 right-0 z-50 transition-all duration-400 ease-out bg-gradient-to-b from-[var(--color-background)] to-transparent ${isScrolled ? 'bg-[var(--color-background)]' : ''}`
-                : 'bg-[var(--color-background)]' 
-            }`}>
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ease-out bg-gradient-to-b from-[var(--color-background)] to-transparent 
+            ${isScrolled ? 'bg-[var(--color-background)]' : ''}`}>
             <div className="custom-container py-3 flex items-center justify-between">
                 {/*Logo*/}
                 <div className="h-[35px] md:h-[40px]">
