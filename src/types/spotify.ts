@@ -56,7 +56,7 @@ export interface SpotifyAlbum {
   artists: SpotifyArtist[];
   album_type: 'album' | 'single' | 'compilation';
   genres?: string[];
-  tracks?: {
+  tracks: {
     items: SpotifyTrack[];
   };
 }

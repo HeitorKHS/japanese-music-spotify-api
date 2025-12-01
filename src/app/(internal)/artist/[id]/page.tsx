@@ -32,8 +32,8 @@ export default async function Artist({params}: ArtistProps){
                 />
                 <div className="overlay z-10" />
                 {/*Content hero*/}
-                <div className="content-container relative flex flex-col md:flex-row gap-10 pt-[59px] md:pt-[64px] z-20">
-                    <div className="relative w-full max-w-[350px] aspect-square border-3 border-white/30 rounded-3xl overflow-hidden">
+                <div className="content-container relative flex flex-col md:flex-row items-center md:items-end gap-10 pt-[59px] md:pt-[64px] z-20">
+                    <div className="relative w-full max-w-[200px] md:max-w-[350px] aspect-square border-3 border-white/30 rounded-3xl overflow-hidden">
                         <Image
                             src={artist?.images?.[0].url || ""}
                             alt={artist?.name || "Artist"}

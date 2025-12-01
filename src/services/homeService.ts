@@ -3,14 +3,14 @@ import { getArtistById } from "@/repositories/artistRepository";
 import { SpotifyArtist, SpotifyTrack } from "@/types/spotify";
 
 export interface HomeData{
-    featuredArtistOfDay: SpotifyArtist | null;
-    featuredArtistsOfWeek: SpotifyArtist[];
-    featuredTracksOfWeek: SpotifyTrack[];
-    featuredWomenTracks: SpotifyTrack[];
-    featuredRockTracks: SpotifyTrack[];
-    allTokyoTracks: SpotifyTrack[];  
-    allWomenTracks: SpotifyTrack[];
-    allRockTracks: SpotifyTrack[]; 
+    featuredArtistOfDay: SpotifyArtist | null,
+    featuredArtistsOfWeek: SpotifyArtist[],
+    featuredTracksOfWeek: SpotifyTrack[],
+    featuredWomenTracks: SpotifyTrack[],
+    featuredRockTracks: SpotifyTrack[],
+    allTokyoTracks: SpotifyTrack[],
+    allWomenTracks: SpotifyTrack[],
+    allRockTracks: SpotifyTrack[],
 }
 
 async function extractUniqueArtists(tracks: SpotifyTrack[], limit: number): Promise<SpotifyArtist[]> {

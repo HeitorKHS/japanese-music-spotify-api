@@ -1,33 +1,29 @@
 import { SpotifyTrack } from "@/types/spotify";
 import { useFormatTime } from "@/hooks/useFormatTime";
-import Image from "next/image";
 import Link from "next/link";
 import { IoPlay } from "react-icons/io5";
+import { RiTimeLine } from "react-icons/ri";
 
-interface listTrackProps{
+interface listTracklbumProps{
     tracks: SpotifyTrack[],
 }
 
-export function ListTrack({tracks}: listTrackProps){
+export function ListTrackAlbum({tracks}: listTracklbumProps){
 
     return(
 
         <div>
+            <div className="flex md:px-3 py-3 gap-5 items-center text-white/60">
+                <span className="w-[20px]">#</span>
+                <div className="flex-1 whitespace-nowrap overflow-hidden">
+                    <span>Título</span>        
+                </div>
+                <span className="pr-11"><RiTimeLine/></span>
+            </div>
             {
                 tracks.map((track, index)=>(
                     <div key={track.id} className="flex md:px-3 py-3 gap-5 items-center">
                         <div className="w-[20px]">{index + 1}</div>
-                        <div className="relative aspect-square w-full max-w-[50px] rounded-lg overflow-x-hidden">
-                            <Link href={`/album/${track.album.id}`}>
-                                <Image
-                                    src={track?.album.images?.[0].url || ""}
-                                    alt={track?.name || "Track"}
-                                    fill
-                                    className="object-container"
-                                    priority
-                                />
-                            </Link>
-                        </div>
                         <div className="flex-1 whitespace-nowrap overflow-hidden">
                             <h3 className="truncate">{track.name}</h3>
                             {track.artists.map((artist, index) => (
