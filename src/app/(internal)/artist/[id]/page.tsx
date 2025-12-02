@@ -62,7 +62,7 @@ export default async function Artist({params}: ArtistProps){
                 <div className="md:pt-10 pb-10">
                     <div className="flex items-end justify-between pb-5">
                         <h2 className="text-2xl md:text-3xl font-semibold">Discografia</h2>
-                        <Link href={"/"} className="text-sm md:text-base hover:text-white hover:underline text-white/60"> Mostrar tudo</Link>
+                        <Link href={`/artist/${artist?.id}/albums`} className="text-sm md:text-base hover:text-white hover:underline text-white/60"> Mostrar tudo</Link>
                     </div>             
                     <div className="pt-5">
                         <h3 className="text-xl">Álbuns</h3>

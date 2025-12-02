@@ -7,6 +7,7 @@ export interface ArtistData {
     fiveAlbums: SpotifyAlbum[],
     fiveSinglesAndEps: SpotifyAlbum[],
     fiveAppearsOn: SpotifyAlbum[],
+    allArtistAlbums: SpotifyAlbum[],
     //relatedArtists: SpotifyArtist[],
 }
 
@@ -14,12 +15,13 @@ export async function getArtistData(artistId: string): Promise<ArtistData> {
 
     try{
         
-        const [artist, topTracks, fiveAlbums, fiveSinglesAndEps, fiveAppearsOn] = await Promise.all([
+        const [artist, topTracks, fiveAlbums, fiveSinglesAndEps, fiveAppearsOn, allArtistAlbums] = await Promise.all([
             getArtistById(artistId),
             getArtistTopTracks(artistId),
             getArtistFiveAlbums(artistId),
             getArtistFiveSinglesAndEps(artistId),
-            getArtistFiveAppearsOn(artistId)
+            getArtistFiveAppearsOn(artistId),
+            getAllArtistAlbums(artistId),
             //getRelatedArtists(artistId),
         ]);
 
@@ -29,6 +31,7 @@ export async function getArtistData(artistId: string): Promise<ArtistData> {
             fiveAlbums: fiveAlbums,
             fiveSinglesAndEps: fiveSinglesAndEps,
             fiveAppearsOn: fiveAppearsOn,
+            allArtistAlbums: allArtistAlbums,
            // relatedArtists: relatedArtists.artists,
         }
 
@@ -40,6 +43,7 @@ export async function getArtistData(artistId: string): Promise<ArtistData> {
             fiveAlbums: [],
             fiveSinglesAndEps: [],
             fiveAppearsOn: [],
+            allArtistAlbums: [],
             //relatedArtists: [],
         }
     }
