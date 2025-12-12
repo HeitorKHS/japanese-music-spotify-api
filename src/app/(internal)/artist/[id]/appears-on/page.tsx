@@ -2,17 +2,17 @@ import { getArtistData } from "@/services/artistService";
 import Image from "next/image";
 import Link from "next/link";
 
-interface AlbumsArtistProps{
+interface ArtistAppearsOnProps{
     params: {
         id:string,
     },
 };
 
-export default async function AlbumsArtist({params}: AlbumsArtistProps){
+export default async function ArtistAppearsOn({params}: ArtistAppearsOnProps){
 
     const { id } = await params;
     const data = await getArtistData(id);
-    const { allArtistAlbums, artist } = data;
+    const { allArtistAlbumsAppearsOn, artist } = data;
 
     return(
 
@@ -40,16 +40,16 @@ export default async function AlbumsArtist({params}: AlbumsArtistProps){
                     </div>
                     <div className="flex flex-col justify-end">
                         <span className="text-4xl font-semibold pb-5">{artist?.name}</span>
-                        <span className="text-white/60 text-lg pb-5">{allArtistAlbums.length} álbuns</span>
+                        <span className="text-white/60 text-lg pb-5">{allArtistAlbumsAppearsOn.length} álbuns</span>
                     </div>
 
                 </div>
             </div>
             {/*Albums*/}
             <div className="content-container pt-10 pb-20">
-                <h1 className="text-2xl md:text-3xl font-semibold pb-5">Álbuns</h1>
+                <h1 className="text-2xl md:text-3xl font-semibold pb-5">Aparece em</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-5">
-                    {allArtistAlbums.map((album)=>(
+                    {allArtistAlbumsAppearsOn.map((album)=>(
                         <Link key={album.id} className="relative flex sm:flex-col gap-2" href={`/album/${album.id}`}>   
                             <div className="relative w-full max-w-[100px] sm:max-w-full aspect-square rounded-sm overflow-hidden">
                                 <Image

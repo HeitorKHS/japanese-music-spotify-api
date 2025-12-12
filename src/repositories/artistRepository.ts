@@ -108,6 +108,38 @@ export async function getAllArtistAlbums(artistId: string) : Promise<SpotifyAlbu
 
 }
 
+//Get all the artist's albums
+export async function getAllArtistAlbumsAppearsOn(artistId: string) : Promise<SpotifyAlbum[]>{
+    
+    let allAlbums: SpotifyAlbum[] = [];
+    let offset = 0;
+    const limit = 50;
+    let hasMore = true;
+
+    while(hasMore){
+
+        const query = buildQueryString({
+            market: SPOTIFY_MARKET,
+            include_groups: "appears_on",
+            limit,
+            offset,
+        });
+
+        const response = await spotifyFetch<SpotifyPagination<SpotifyAlbum>>(
+            `/artists/${artistId}/albums${query}`
+        );
+
+        allAlbums.push(...response.items);
+
+        hasMore = response.next !== null;
+        offset += limit;
+
+    }
+
+    return allAlbums.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
+
+}
+
 //Search for the artist's top tracks
 export async function getArtistTopTracks(artistId: string): Promise<SpotifyTrack[]>{
 

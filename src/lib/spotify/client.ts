@@ -63,7 +63,6 @@ export async function spotifyFetch<T>( endpoint: string, options?: RequestInit )
     const url = `${SPOTIFY_API.BASE_URL}${endpoint}`;
 
     try{
-
         const response = await fetch(url, {
             ...options, //Spreads the other request options, such as method, credentials, etc.
             headers: {

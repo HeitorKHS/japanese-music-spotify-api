@@ -1,4 +1,4 @@
-import { getArtistById, getArtistTopTracks, getArtistFiveAlbums, getArtistFiveSinglesAndEps, getAllArtistAlbums, getRelatedArtists, getArtistFiveAppearsOn } from "@/repositories/artistRepository";
+import { getArtistById, getArtistTopTracks, getArtistFiveAlbums, getArtistFiveSinglesAndEps, getAllArtistAlbums, getRelatedArtists, getArtistFiveAppearsOn, getAllArtistAlbumsAppearsOn } from "@/repositories/artistRepository";
 import { SpotifyArtist, SpotifyAlbum, SpotifyTrack } from "@/types/spotify";
 
 export interface ArtistData {
@@ -8,6 +8,7 @@ export interface ArtistData {
     fiveSinglesAndEps: SpotifyAlbum[],
     fiveAppearsOn: SpotifyAlbum[],
     allArtistAlbums: SpotifyAlbum[],
+    allArtistAlbumsAppearsOn: SpotifyAlbum[],
     //relatedArtists: SpotifyArtist[],
 }
 
@@ -15,13 +16,14 @@ export async function getArtistData(artistId: string): Promise<ArtistData> {
 
     try{
         
-        const [artist, topTracks, fiveAlbums, fiveSinglesAndEps, fiveAppearsOn, allArtistAlbums] = await Promise.all([
+        const [artist, topTracks, fiveAlbums, fiveSinglesAndEps, fiveAppearsOn, allArtistAlbums, allArtistAlbumsAppearsOn] = await Promise.all([
             getArtistById(artistId),
             getArtistTopTracks(artistId),
             getArtistFiveAlbums(artistId),
             getArtistFiveSinglesAndEps(artistId),
             getArtistFiveAppearsOn(artistId),
             getAllArtistAlbums(artistId),
+            getAllArtistAlbumsAppearsOn(artistId),
             //getRelatedArtists(artistId),
         ]);
 
@@ -32,6 +34,7 @@ export async function getArtistData(artistId: string): Promise<ArtistData> {
             fiveSinglesAndEps: fiveSinglesAndEps,
             fiveAppearsOn: fiveAppearsOn,
             allArtistAlbums: allArtistAlbums,
+            allArtistAlbumsAppearsOn: allArtistAlbumsAppearsOn,
            // relatedArtists: relatedArtists.artists,
         }
 
@@ -44,6 +47,7 @@ export async function getArtistData(artistId: string): Promise<ArtistData> {
             fiveSinglesAndEps: [],
             fiveAppearsOn: [],
             allArtistAlbums: [],
+            allArtistAlbumsAppearsOn: [],
             //relatedArtists: [],
         }
     }

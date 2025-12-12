@@ -1,6 +1,6 @@
 import { getArtistData } from "@/services/artistService";
-import { ListTrack } from "@/components/listTrack/ListTrack";
-import { ListAlbum } from "@/components/listAlbum/ListAlbum";
+import { ListTrack } from "@/components/ListTrack/ListTrack";
+import { ListAlbum } from "@/components/ListAlbum/ListAlbum";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -78,7 +78,7 @@ export default async function Artist({params}: ArtistProps){
                 <div className="md:pt-10 pb-20">
                     <div className="flex items-end justify-between pb-5">
                         <h2 className="text-2xl md:text-3xl font-semibold">Aparece em</h2>
-                        <Link href={"/"} className="text-sm md:text-base hover:text-white hover:underline text-white/60"> Mostrar tudo</Link>
+                        <Link href={`/artist/${artist?.id}/appears-on`} className="text-sm md:text-base hover:text-white hover:underline text-white/60"> Mostrar tudo</Link>
                     </div>
                     <div className="pt-5">
                         <ListAlbum albums={fiveAppearsOn}/>

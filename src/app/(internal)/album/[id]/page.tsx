@@ -1,8 +1,8 @@
 import { getAlbumData } from "@/services/albumService";
 import { SpotifyTrack } from "@/types/spotify";
 import { useFormatTime } from "@/hooks/useFormatTime";
-import { ListTrackAlbum } from "@/components/listTrack/listTrackAlbum";
-import { ListAlbum } from "@/components/listAlbum/ListAlbum";
+import { ListTrackAlbum } from "@/components/ListTrack/listTrackAlbum";
+import { ListAlbum } from "@/components/ListAlbum/ListAlbum";
 import Image from "next/image";
 import Link from "next/link";
 
