@@ -58,6 +58,8 @@ export async function spotifyFetch<T>(endpoint: string, options?: RequestInit): 
 
     try{
 
+        console.log(url);
+
         const response = await fetch(url, {
             ...options, //Spreads the other request options, such as method, credentials, etc
             headers:{

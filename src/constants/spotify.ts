@@ -18,7 +18,7 @@ export const JAPANESE_GENRES = [
 export const SPOTIFY_MARKET = "PT";
 
 //Playslist
-export const PLAYLISTS = {
+export const SPOTIFY_PLAYLISTS = {
   TOKYO_SUPER_HITS: "0KgrxJF5QFmJViO5TJEfLr",
   JAPANESE_WOMEN: "11WH19OqPnO6LAYKGJKYlJ",
   ROCK_JAPAN: "59sn8iwLmvqjO83uT4w29S",

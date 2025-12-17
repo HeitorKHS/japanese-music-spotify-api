@@ -1,10 +1,16 @@
-export default function Home() {
+import { Hero } from "../components/Hero/Hero";
+import { getHomeData } from "../services/playlistService";
+
+export default async function Home() {
+
+  const data = await getHomeData();
+  const { featuredArtist } = data;
 
   return (
 
-    <div>
-      <h1>Home content</h1>
-    </div>
+    <>
+      <Hero artist={featuredArtist} />
+    </>
     
   );
   
