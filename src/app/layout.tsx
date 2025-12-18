@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "../components/Header/Header";
+import { Footer } from "../components/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "J-Music",
@@ -19,6 +20,7 @@ export default function RootLayout({
           <main className="min-h-screen pt-16">
             {children}
           </main>  
+          <Footer/>
       </body>
     </html>
   );
