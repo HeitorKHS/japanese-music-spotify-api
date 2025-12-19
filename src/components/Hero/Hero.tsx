@@ -1,4 +1,5 @@
 import { SlMusicTone, SlMusicToneAlt } from "react-icons/sl";
+import { Search } from "../Search/Search";
 
 export function Hero(){
 
@@ -45,9 +46,8 @@ export function Hero(){
                 </h1>
 
                 <span className="inline-block mb-10 text-lg md:text-xl text-white/50">Explore artistas, álbuns e músicas do Japão. Encontre tudo sobre seus artistas favoritos.</span>
-                <div className="border border-neutral-800">
-                        buscar
-                </div>
+                
+                <Search/>
                 
             </div>
         </div>
