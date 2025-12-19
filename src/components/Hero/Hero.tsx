@@ -1,57 +1,54 @@
-import { SpotifyArtist } from "@/src/types/spotify";
-import Image from "next/image";
-import Link from "next/link";
-import { FaSpotify, FaInfoCircle } from "react-icons/fa";
+import { SlMusicTone, SlMusicToneAlt } from "react-icons/sl";
 
-interface HeroProps{
-    artist: SpotifyArtist | null,
-};
-
-export function Hero({ artist }: HeroProps){
+export function Hero(){
 
     return(
 
-        <div className="relative h-[calc(100svh-64px)] w-full">
-            {/*Image hero backgroud*/}
-            <Image
-                src={"/img/hero.jpg"}
-                alt={"Hero backgroud"}
-                fill
-                className="object-cover -z-10"
-                priority
-            />
-            <div className="overlay z-10" />
-            {/*Hero content*/}
-            <div className="relative content-container h-full flex flex-col items-center justify-center gap-8 z-20">
-                <span className="text-white/60 text-xl font-semibold">Artista em destaque</span>
-                <div className="relative w-full max-w-80 aspect-square rounded-full overflow-hidden">
-                    <Image
-                        src={artist?.images?.[0].url || "/img/no_image.png"}
-                        alt={"Artist image"}
-                        fill
-                        className="object-cover"
-                        priority
-                    />
+        <div className="relative h-[calc(100svh-64px)] flex items-center justify-center overflow-hidden">
+            {/* Hero Backgroud*/}
+            <div className="absolute inset-0">
+                <div className="absolute top-1/4 left-1/4 w-110 h-96 bg-pink-500/20 rounded-full blur-3xl" />
+                <div className="absolute top-1/4 right-1/4 w-100 h-80 bg-purple-600/20 rounded-full blur-3xl" />
+                <div className="absolute top-2/4 right-1/3 w-80 h-64 bg-pink-600/15 rounded-full blur-3xl" />
+            </div>
+            {/*Floating icon*/}
+            <div className="absolute inset-0">
+                <div className="absolute top-1/8 left-1/6 animate-float">
+                    <SlMusicTone className="text-5xl md:text-8xl text-pink-500/20"/>
                 </div>
-                <h1 className="text-xl sm:text-3xl font-extrabold">{artist?.name}</h1>
-                <div className="flex flex-col gap-2">
-                    <Link 
-                        href={artist?.id ? `/artist/${artist.id}` : "/"}
-                        className="flex gap-4 items-center justify-center font-bold px-6 py-3 rounded-full bg-white/5 hover:scale-105"
-                    >
-                        <FaInfoCircle size={20}/>
-                        Ver detalhes do artista
-                    </Link>
-                    <Link 
-                        href={artist?.external_urls.spotify || "/"}
-                        target="_blank"
-                        rel="noopener noreferrer" //Privacity
-                        className="flex gap-4 items-center justify-center bg-green-500 font-bold px-6 py-3 rounded-full hover:scale-105"
-                    >
-                        <FaSpotify size={20}/>
-                        Abra no Spotify
-                    </Link>
+                <div className="absolute top-2/5 left-1/3 animate-float">
+                    <SlMusicToneAlt className="text-5xl md:text-8xl text-pink-500/20"/>
                 </div>
+                <div className="absolute top-1/5 left-5/6 animate-float">
+                    <SlMusicTone className="text-5xl md:text-8xl text-pink-500/20"/>
+                </div>
+                <div className="absolute top-3/5 left-1/10 animate-float">
+                    <SlMusicToneAlt className="text-5xl md:text-8xl text-pink-500/20"/>
+                </div>
+                <div className="absolute top-3/6 left-4/7 animate-float">
+                    <SlMusicTone className="text-5xl md:text-8xl text-pink-500/20"/>
+                </div>
+                <div className="absolute top-4/6 left-5/7 animate-float">
+                    <SlMusicToneAlt className="text-5xl md:text-8xl text-pink-500/20"/>
+                </div>
+            </div>
+            {/*Content*/}
+            <div className="relative content-container z-10 text-center max-w-5xl">
+                
+                <span className="inline-block px-4 py-2 mb-10 text-pink-400 bg-pink-500/10 border border-pink-500/20 rounded-full backdrop-blur-sm">
+                    🎌 日本の音楽を発見しよう
+                </span>
+                
+                <h1 className="mb-10 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+                    <span>Explore o </span>
+                    <span className="bg-linear-to-r from-pink-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">Universo Musical do Japão</span>
+                </h1>
+
+                <span className="inline-block mb-10 text-lg md:text-xl text-white/50">Explore artistas, álbuns e músicas do Japão. Encontre tudo sobre seus artistas favoritos.</span>
+                <div className="border border-neutral-800">
+                        buscar
+                </div>
+                
             </div>
         </div>
 

@@ -4,12 +4,12 @@ import { getHomeData } from "../services/playlistService";
 export default async function Home() {
 
   const data = await getHomeData();
-  const { featuredArtist } = data;
+  const {  } = data;
 
   return (
 
     <>
-      <Hero artist={featuredArtist} />
+      <Hero/>
     </>
     
   );

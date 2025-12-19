@@ -4,7 +4,6 @@ import { getPlaylistTracks } from "../repositories/playlistRepository";
 import { getSeveralArtists } from "../repositories/artistRepository";
 
 interface HomeData{
-    featuredArtist: SpotifyArtist | null,
     tokyoArtits: SpotifyArtist[],
     indieArtits: SpotifyArtist[],
     womenArtits: SpotifyArtist[],
@@ -56,7 +55,6 @@ export async function getHomeData(): Promise<HomeData>{
         const rapTracksArtists = await filterArtist(rapTracks, 10); 
 
         return{
-            featuredArtist: tokyoTracksArtists[0] || null,
             tokyoArtits: tokyoTracksArtists.slice(1, 11),
             indieArtits: indieTracksArtists.slice(0, 10),
             womenArtits: womenTracksArtists.slice(0, 10),
@@ -69,7 +67,6 @@ export async function getHomeData(): Promise<HomeData>{
         console.error('Erro ao buscar dados da home: ', error);
 
         return{
-            featuredArtist: null,
             tokyoArtits: [],
             indieArtits: [],
             womenArtits: [],
