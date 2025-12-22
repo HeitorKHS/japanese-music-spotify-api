@@ -1,0 +1,29 @@
+import { SpotifyArtist } from "@/src/types/spotify";
+import Link from "next/link";
+import Image from "next/image";
+
+interface ArtistCardProps{
+    artist: SpotifyArtist,
+};
+
+export function ArtistCard({artist}: ArtistCardProps){
+
+    return(
+
+        <Link href={`/artist/${artist.id}`} className="block p-2 md:p-4 rounded-xl hover:bg-white/5">
+            <div className="relative max-w-75 rounded-xl overflow-hidden aspect-square">
+                <Image 
+                    src={artist.images?.[0].url || "/img/"}
+                    alt={artist?.name || "Not found"}
+                    fill
+                    className="object-cover transition-transform duration-100 ease-in-out transform hover:scale-110"
+                    priority
+                />
+            </div>
+            <p className="font-semibold pt-3">{artist.name}</p>
+            <span className="text-sm text-white/50 capitalize pt-3">{artist.type}</span>
+        </Link>   
+
+    )
+
+}

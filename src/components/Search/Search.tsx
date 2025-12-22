@@ -4,8 +4,10 @@ export function Search(){
 
     return(
 
-        <div className="relative max-w-xl mx-auto" role="search">
-            <div className="absolute -inset-1 bg-linear-to-r from-pink-400 via-pink-500 to-purple-500 blur-xl opacity-40" />
+        <div className="relative max-w-xl mx-auto group" role="search">
+            <div className="absolute -inset-1 bg-linear-to-r from-pink-400 via-pink-500 to-purple-500 blur-xl opacity-40
+                group-hover:from-pink-600 group-hover:via-pink-700 group-hover:to-purple-800 transition duration-500
+            "/>
             <div className="relative flex items-center bg-neutral-900 rounded-xl border-black/40 overflow-hidden">
                 <FaSearch  size={15} className="text-neutral-500 mx-3 shrink-0"/>
                 <label htmlFor="search-input" className="sr-only">

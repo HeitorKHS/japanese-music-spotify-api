@@ -34,11 +34,7 @@ export function Hero(){
                 </div>
             </div>
             {/*Content*/}
-            <div className="relative content-container z-10 text-center max-w-5xl">
-                
-                <span className="inline-block px-4 py-2 mb-10 text-pink-400 bg-pink-500/10 border border-pink-500/20 rounded-full backdrop-blur-sm">
-                    🎌 日本の音楽を発見しよう
-                </span>
+            <div className="fadeInDown relative content-container z-10 text-center max-w-5xl">
                 
                 <h1 className="mb-10 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
                     <span>Explore o </span>
