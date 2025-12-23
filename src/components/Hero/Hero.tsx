@@ -34,7 +34,7 @@ export function Hero(){
                 </div>
             </div>
             {/*Content*/}
-            <div className="fadeInDown relative content-container z-10 text-center max-w-5xl">
+            <div className="relative content-container z-10 text-center max-w-5xl">
                 
                 <h1 className="mb-10 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
                     <span>Explore o </span>

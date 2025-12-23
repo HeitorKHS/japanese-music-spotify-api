@@ -13,8 +13,8 @@ export function ArtistCard({artist}: ArtistCardProps){
         <Link href={`/artist/${artist.id}`} className="block p-2 md:p-4 rounded-xl hover:bg-white/5">
             <div className="relative max-w-75 rounded-xl overflow-hidden aspect-square">
                 <Image 
-                    src={artist.images?.[0].url || "/img/"}
-                    alt={artist?.name || "Not found"}
+                    src={artist.images?.[0].url || "/img/no_image.png"}
+                    alt={artist?.name || "Imagem não encontrado"}
                     fill
                     className="object-cover transition-transform duration-100 ease-in-out transform hover:scale-110"
                     priority
