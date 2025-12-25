@@ -1,52 +1,58 @@
 import { SPOTIFY_API, ERROR_MESSAGES } from "@/src/constants/spotify";
 
-interface SpotifyAuthRespose{
+interface SpotifyAuthResponse{
     access_token: string,
     token_type: "Bearer",
     expires_in: number,
 };
 
-//Verify token
-async function getAccessToken(): Promise<string>{
+//Variables store the access token and its expiration time.
+let cachedToken : string | null = null;
+let tokenExpiration: number = 0;
+
+//Verify the token
+async function getAccessToken() : Promise<string> {
+    
+    //If there is already a valid token in the cache, return
+    if(cachedToken && Date.now() < tokenExpiration){
+        return cachedToken;
+    }
 
     const clientId = process.env.SPOTIFY_CLIENT_ID;
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
     if(!clientId || !clientSecret){
-        throw new Error ("Credenciais doSpotify não configuradas");
+        throw new Error ('Credenciais do Spotify não configuradas');
     }
 
     //Makes the authentication request
     try{
 
         const response = await fetch(SPOTIFY_API.AUTH_URL, {
-            method: "POST",
+            method: 'POST',
             headers:{
-                "Content-Type": "application/x-www-form-urlencoded",
+                'Content-Type': 'application/x-www-form-urlencoded',
                 Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString('base64')}`,
             },
-            body: "grant_type=client_credentials",
-            next:{
-                revalidate: 3600,
-                tags: ["spotify_auth_token"],
-            },
+            body: "grant_type=client_credentials",     
         });
 
         if(!response.ok){
             throw new Error(ERROR_MESSAGES.AUTH_FAILED);
         }
 
-        const data: SpotifyAuthRespose = await response.json();
+        const data: SpotifyAuthResponse = await response.json();
+        cachedToken = data.access_token;
+        tokenExpiration = Date.now() + 3600 * 1000;
 
-        console.log(`Toekn obtido. Válido por ${data.expires_in}s`);
+        console.log(`Token obtido. Válido por ${data.expires_in}s`);
 
         return data.access_token;
 
-    } catch (error){
+    } catch (error) {
         console.error('Erro na autenticação: ', error);
         throw new Error(ERROR_MESSAGES.AUTH_FAILED);
     }
-
 }
 
 //Wrapper to make HTTP requests to the Spotify API
@@ -57,8 +63,6 @@ export async function spotifyFetch<T>(endpoint: string, options?: RequestInit): 
     const url = `${SPOTIFY_API.BASE_URL}${endpoint}`;
 
     try{
-
-        console.log(url);
 
         const response = await fetch(url, {
             ...options, //Spreads the other request options, such as method, credentials, etc

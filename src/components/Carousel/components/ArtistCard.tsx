@@ -10,18 +10,17 @@ export function ArtistCard({artist}: ArtistCardProps){
 
     return(
 
-        <Link href={`/artist/${artist.id}`} className="block p-2 md:p-4 rounded-xl hover:bg-white/5">
+        <Link href={`/artist/${artist.id}`} className="group block p-2 md:p-4 rounded-xl hover:bg-white/5">
             <div className="relative max-w-75 rounded-xl overflow-hidden aspect-square">
                 <Image 
                     src={artist.images?.[0].url || "/img/no_image.png"}
                     alt={artist?.name || "Imagem não encontrado"}
                     fill
-                    className="object-cover transition-transform duration-100 ease-in-out transform hover:scale-110"
-                    priority
+                    className="object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110"
                 />
             </div>
-            <p className="font-semibold pt-3">{artist.name}</p>
-            <span className="text-sm text-white/50 capitalize pt-3">{artist.type}</span>
+            <h3 className="font-semibold pt-3">{artist.name}</h3>
+            <span className="text-sm text-white/50 capitalize">{artist.type}</span>
         </Link>   
 
     )
