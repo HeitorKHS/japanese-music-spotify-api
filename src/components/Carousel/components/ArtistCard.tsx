@@ -19,8 +19,10 @@ export function ArtistCard({artist}: ArtistCardProps){
                     className="object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110"
                 />
             </div>
-            <h3 className="font-semibold pt-3">{artist.name}</h3>
-            <span className="text-sm text-white/50 capitalize">{artist.type}</span>
+            <div className="flex flex-col">
+                <h3 className="font-semibold pt-3 truncate">{artist.name}</h3>
+                <span className="w-full text-sm text-white/50 capitalize truncate">{artist.type}</span>
+            </div>
         </Link>   
 
     )

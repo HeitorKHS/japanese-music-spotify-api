@@ -40,7 +40,7 @@ export function Discography({albums, singleEps}: DiscographyProps){
                 </button>
             </div>
             
-            <div className="flex overflow-x-hidden -mx-3">
+            <div className="mt-2 flex overflow-x-hidden -mx-3">
                 {currentData.map((album)=>(
                     <div key={album.id} className="shrink-0 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/8 p-3 hover:bg-white/5 rounded-xl hover:cursor-pointer transition-colors">
                         <AlbumCard  album={album} />

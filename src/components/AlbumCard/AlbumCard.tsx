@@ -10,7 +10,7 @@ export function AlbumCard({album}: AlbumCardProps){
 
     return(
 
-        <Link href={`/album/${album.href}`} className="block ">
+        <Link href={`/album/${album.id}`}>
             <div className="relative max-w-75 aspect-square rounded-xl overflow-hidden">
                 <Image
                     src={album.images?.[0].url || "/img/not_found.png"}

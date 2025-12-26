@@ -20,12 +20,11 @@ export default async function Artist({params}: ArtistProps){
 
     return(
 
-        <div className="min-h-[calc(100svh-64px)]">
+        <div>
 
             {/*Hero*/}
             <div className="relative min-h-[50vh] md:min-h-[60vh] overflow-hidden flex">
                 {/*Background Image*/}
-
                 <Image
                     src={artist?.images?.[0].url || "/img/no_image.png"}
                     alt={artist?.name || "Imagem não encontrado"}
@@ -37,7 +36,7 @@ export default async function Artist({params}: ArtistProps){
                 <div className="absolute inset-0 bg-linear-to-r from-[#171717]/80 to-transparent" />
 
                 {/*Artist Info*/}
-                <div className="content-container z-10 flex flex-col justify-end text-white">
+                <div className="content-container z-10 flex flex-col justify-end text-white py-2">
                     <div className="relative max-w-55 aspect-square rounded-full overflow-hidden">
                         <Image
                             src={artist?.images?.[0].url || "/img/no_image.png"}
@@ -47,9 +46,9 @@ export default async function Artist({params}: ArtistProps){
                             priority
                         />
                     </div>
-                    <span className="mb-2 capitalize text-white/60">{artist?.type}</span>
+                    <span className="capitalize text-white/60">{artist?.type}</span>
                     <h1 className="mb-4 m-0 text-4xl md:text-6xl lg:text-7xl font-bold">{artist?.name}</h1>
-                    <div className="mb-2 flex flex-wrap items-center sm:gap-6 text-white/60">
+                    <div className="flex flex-wrap items-center sm:gap-6 text-white/60">
                         <div className="flex items-center gap-2">
                             <LuTrendingUp/>
                             {artist?.popularity}/100 de popularidade
