@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useFormatTime } from "@/src/hooks/useFormatTime";
 import { SpotifyTrack } from "@/src/types/spotify";
 import { TrackList } from "@/src/components/TrackList";
+import { FaSpotify } from "react-icons/fa";
 
 interface AlbumProps{
     params:{
@@ -55,7 +56,7 @@ export default async function Album({params}: AlbumProps){
                             priority
                         />
                     </div>
-                    <div>
+                    <div className="flex flex-col items-center md:items-start">
                         <span className="capitalize text-neutral-500">{album?.album_type}</span>
                         <h1 className="mt-5 text-2xl md:text-4xl lg:text-5xl font-bold">{album?.name}</h1>
                         <div className="mt-5 flex flex-col md:flex-row text-neutral-500 text-sm font-semibold">
@@ -72,7 +73,19 @@ export default async function Album({params}: AlbumProps){
                                 <span>{album?.total_tracks} Músicas</span>・
                                 <span>{AlbumDuration(album?.tracks.items ?? [])}</span>
                             </div>
-                        </div>      
+                        </div>
+                        <div className="mt-5 mb-2">
+                            <Link 
+                                href={album?.external_urls.spotify || "/"}
+                                target="_blank"
+                                rel="noopener noreferrer" //Privacity
+                                className="inline-flex gap-4 items-center justify-center font-semibold bg-green-500 px-4 py-1 rounded-full"
+                                >
+                                <FaSpotify size={20}/>
+                                Abra no Spotify                                
+                            </Link>
+                        </div>
+
                     </div>
                 </div>
             </div>

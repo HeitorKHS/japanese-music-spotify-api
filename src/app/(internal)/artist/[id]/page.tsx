@@ -2,6 +2,7 @@ import { getArtistData } from "@/src/services/artistService"
 import Image from "next/image";
 import Link from "next/link";
 import { LuUsers, LuTrendingUp } from "react-icons/lu";
+import { FaSpotify } from "react-icons/fa";
 import { TrackList } from "@/src/components/TrackList";
 import { Discography } from "../components/Discography";
 import { AppearsOn } from "../components/AppearsOn";
@@ -57,6 +58,17 @@ export default async function Artist({params}: ArtistProps){
                             <LuUsers/>
                             {artist?.followers?.total.toLocaleString("pt-BR")} Seguidores
                         </div>
+                    </div>
+                    <div className="mt-5 mb-2">
+                        <Link 
+                            href={artist?.external_urls.spotify || "/"}
+                            target="_blank"
+                            rel="noopener noreferrer" //Privacity
+                            className="inline-flex gap-4 items-center justify-center font-semibold bg-green-500 px-4 py-1 rounded-full"
+                            >
+                            <FaSpotify size={20}/>
+                            Abra no Spotify                                
+                        </Link>
                     </div>
                 </div>
             </div>

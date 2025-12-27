@@ -1,6 +1,8 @@
 import { SpotifyTrack } from "@/src/types/spotify";
 import { useFormatTime } from "@/src/hooks/useFormatTime";
 import Link from "next/link";
+import { IoMdTime } from "react-icons/io";
+
 
 interface withOutImageProps{
     tracks: SpotifyTrack[],
@@ -11,6 +13,11 @@ export function withOutImage({tracks}: withOutImageProps){
     return(
 
         <div>
+            <div className="flex items-center p-2 gap-5 text-neutral-500 font-semibold text-sm">
+                <div className="w-5">#</div>
+                <div className="flex-1">Título</div>
+                <div><IoMdTime size={20} /></div>
+            </div>
             {tracks.map((track, index)=>(
                 <div key={track.id} className="flex items-center p-2 gap-5">
                     <div className="w-5">{index + 1}</div>
