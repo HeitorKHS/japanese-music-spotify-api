@@ -61,6 +61,19 @@ export interface SpotifyAlbum{
     },
 };
 
+export interface SpotifyPlaylist{
+    id: string,
+    name: string,
+    type: "playlist",
+    uri: string,
+    href: string,
+    external_urls: SpotifyExternalUrls,
+    images: SpotifyImage[],
+    tracks: {
+        items: {track: SpotifyTrack}[],
+    },
+};
+
 export interface SpotifyPagination<T>{
     href: string,
     items: T[],

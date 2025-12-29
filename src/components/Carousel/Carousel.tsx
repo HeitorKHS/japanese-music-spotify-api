@@ -3,7 +3,7 @@
 import { SpotifyArtist } from "@/src/types/spotify";
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { ArtistCard } from "./components/ArtistCard";
+import { ArtistCard } from "../ArtistCard/ArtistCard";
 import Link from "next/link";
 
 interface CarouselProps{
@@ -184,7 +184,7 @@ export function Carousel({title, artists, link}: CarouselProps){
                     onTouchStart={isMobile ? handleTouchStart : undefined}
                 >
                     {artists.map((artist) => (
-                        <div key={artist.id} style={{ width: `${100 / itemsVisible}%` }} className="shrink-0">
+                        <div key={artist.id} style={{ width: `${100 / itemsVisible}%` }} className="shrink-0 p-3 hover:bg-white/5 rounded-xl hover:cursor-pointer transition-colors">
                             <ArtistCard artist={artist} />
                         </div>
                     ))}

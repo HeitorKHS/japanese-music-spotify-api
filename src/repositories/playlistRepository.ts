@@ -1,32 +1,18 @@
 import { spotifyFetch, buildQueryString } from "../lib/spotify/client";
-import { SPOTIFY_PLAYLISTS } from "../constants/spotify";
-import { SpotifyArtist, SpotifyTrack } from "../types/spotify";
+import { SpotifyPlaylist } from "../types/spotify";
 
-interface PlaylistTrack{
-    track: SpotifyTrack,
-};
-
-
-interface PlaylistResponse{
-    items: PlaylistTrack[],
-};
-
-interface MultipleArtistsResponse{
-    artists: SpotifyArtist,
-};
-
-export async function getPlaylistTracks(playlistId: string): Promise<SpotifyTrack[]>{
+export async function getPlaylist(playlistId: string): Promise<SpotifyPlaylist>{
 
     const query = buildQueryString({
         limit: 50,
         offset: 0,
-        fields: "items(track(artists))"
+        fields: "id,name,type,uri,href,external_urls,images,tracks(items(track(id,name,artists,album,duration_ms,explicit,preview_url,popularity,external_urls)))",
     });
 
-    const response = await spotifyFetch<PlaylistResponse>(
-        `/playlists/${playlistId}/tracks${query}`
+    const response = await spotifyFetch<SpotifyPlaylist>(
+        `/playlists/${playlistId}?${query}`
     );
 
-    return response.items.map(item => item.track);
+    return response;
 
 }

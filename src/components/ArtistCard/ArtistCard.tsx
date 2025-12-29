@@ -10,7 +10,7 @@ export function ArtistCard({artist}: ArtistCardProps){
 
     return(
 
-        <Link href={`/artist/${artist.id}`} className="group block p-2 md:p-4 rounded-xl hover:bg-white/5">
+        <Link href={`/artist/${artist.id}`} className="block p-2 md:p-4 rounded-xl hover:bg-white/5 group">
             <div className="relative max-w-75 rounded-xl overflow-hidden aspect-square">
                 <Image 
                     src={artist.images?.[0].url || "/img/no_image.png"}

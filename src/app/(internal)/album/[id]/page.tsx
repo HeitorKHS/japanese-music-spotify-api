@@ -91,8 +91,8 @@ export default async function Album({params}: AlbumProps){
             </div>
 
             {/*Content*/}
-            <div className="content-container">
-                <section className="mt-20 mb-20">
+            <div className="content-container mt-20 mb-20">
+                <section>
                     <h2 className="text-xl md:text-2xl font-bold mb-4">Músicas</h2>
                     <TrackList.withOutImage tracks={album?.tracks.items || []} />
                 </section>

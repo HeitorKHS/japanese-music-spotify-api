@@ -1,6 +1,6 @@
-import { SpotifyArtist, SpotifyTrack } from "../types/spotify";
+import { SpotifyArtist, SpotifyTrack, SpotifyImage } from "../types/spotify";
 import { SPOTIFY_PLAYLISTS } from "../constants/spotify";
-import { getPlaylistTracks } from "../repositories/playlistRepository";
+import { getPlaylist } from "../repositories/playlistRepository";
 import { getSeveralArtists } from "../repositories/artistRepository";
 
 interface HomeData{
@@ -9,6 +9,14 @@ interface HomeData{
     womenArtits: SpotifyArtist[],
     rapArtits: SpotifyArtist[],
     rockArtits: SpotifyArtist[],
+};
+
+interface ArtistsPlaylist{
+    artistPlaylist: {
+        name: string,
+        images: SpotifyImage[],
+        artists: SpotifyArtist[],
+    },
 };
 
 async function filterArtist(tracks: SpotifyTrack[], limit: number): Promise<SpotifyArtist[]>{
@@ -41,25 +49,27 @@ export async function getHomeData(): Promise<HomeData>{
     try{
 
         const [ tokyoTracks, indieTracks, womenTracks, rockTracks, rapTracks ] = await Promise.all([
-            getPlaylistTracks(SPOTIFY_PLAYLISTS.TOKYO_SUPER_HITS),
-            getPlaylistTracks(SPOTIFY_PLAYLISTS.INDIE_JAPAN),
-            getPlaylistTracks(SPOTIFY_PLAYLISTS.JAPANESE_WOMEN),
-            getPlaylistTracks(SPOTIFY_PLAYLISTS.ROCK_JAPAN),
-            getPlaylistTracks(SPOTIFY_PLAYLISTS.RAP_JAPAN),
+            getPlaylist(SPOTIFY_PLAYLISTS.TOKYO_SUPER_HITS),
+            getPlaylist(SPOTIFY_PLAYLISTS.INDIE_JAPAN),
+            getPlaylist(SPOTIFY_PLAYLISTS.JAPANESE_WOMEN),
+            getPlaylist(SPOTIFY_PLAYLISTS.ROCK_JAPAN),
+            getPlaylist(SPOTIFY_PLAYLISTS.RAP_JAPAN),
         ]);
 
-        const tokyoTracksArtists = await filterArtist(tokyoTracks, 11);
-        const indieTracksArtists = await filterArtist(indieTracks, 10); 
-        const womenTracksArtists = await filterArtist(womenTracks, 10); 
-        const rockTracksArtists = await filterArtist(rockTracks, 10); 
-        const rapTracksArtists = await filterArtist(rapTracks, 10); 
+        const [ tokyoTracksArtists, indieTracksArtists, womenTracksArtists, rockTracksArtists, rapTracksArtists ] = await Promise.all([
+            filterArtist(tokyoTracks.tracks.items.map(item => item.track), 11),
+            filterArtist(indieTracks.tracks.items.map(item => item.track), 10), 
+            filterArtist(womenTracks.tracks.items.map(item => item.track), 10), 
+            filterArtist(rockTracks.tracks.items.map(item => item.track), 10),
+            filterArtist(rapTracks.tracks.items.map(item => item.track), 10),
+        ]);
 
         return{
             tokyoArtits: tokyoTracksArtists.slice(1, 11),
             indieArtits: indieTracksArtists.slice(0, 10),
-            womenArtits: womenTracksArtists.slice(0, 10),
-            rapArtits: rapTracksArtists.slice(0, 10),
-            rockArtits: rockTracksArtists.slice(0, 10),
+            womenArtits: womenTracksArtists,
+            rapArtits: rapTracksArtists,
+            rockArtits: rockTracksArtists,
         };
 
     } catch(error){
@@ -72,6 +82,38 @@ export async function getHomeData(): Promise<HomeData>{
             womenArtits: [],
             rapArtits: [],
             rockArtits: [],
+        };
+
+    }
+
+}
+
+export async function getArtistsFromPlaylist(idPlaylist: string): Promise<ArtistsPlaylist>{
+
+    try{
+
+        const response = await getPlaylist(idPlaylist);
+
+        const artists = await filterArtist(response.tracks.items.map(item => item.track), 50);
+
+        return{
+            artistPlaylist:{
+                name: response.name,
+                images: response.images,
+                artists: artists,
+            },
+        };
+
+    } catch(error){
+
+        console.error('Erro ao buscar dados da home: ', error);
+
+        return{
+            artistPlaylist:{
+                name: "",
+                images: [],
+                artists: [],
+            },
         };
 
     }

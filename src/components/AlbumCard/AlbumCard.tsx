@@ -10,7 +10,7 @@ export function AlbumCard({album}: AlbumCardProps){
 
     return(
 
-        <Link href={`/album/${album.id}`}>
+        <Link href={`/album/${album.id}`} className="block p-3 hover:bg-white/5 rounded-xl transition-colors group-[]:">
             <div className="relative max-w-75 aspect-square rounded-xl overflow-hidden">
                 <Image
                     src={album.images?.[0].url || "/img/not_found.png"}
@@ -20,7 +20,7 @@ export function AlbumCard({album}: AlbumCardProps){
                 />
             </div>
             <div>
-            <h3 className="font-semibold pt-3 truncate">{album.name}</h3>
+            <h3 className="text-sm font-semibold pt-3 truncate">{album.name}</h3>
             <span className="text-sm text-white/50 capitalize">{album.type}</span>
             </div>
         </Link>

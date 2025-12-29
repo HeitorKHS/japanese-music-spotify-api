@@ -74,9 +74,9 @@ export default async function Artist({params}: ArtistProps){
             </div>
 
             {/*Content*/}
-            <div className="content-container">
+            <div className="content-container mt-20 mb-20">
 
-                <section className="mt-20 mb-20">
+                <section className="mb-20">
                     <h2 className="text-xl md:text-2xl font-bold mb-4">Músicas Populares</h2>
                     <TrackList.withImage tracks={topTracks} />
                 </section>
@@ -89,13 +89,15 @@ export default async function Artist({params}: ArtistProps){
                     <Discography albums={albumsPreview} singleEps={singlesEpsPreview} />
                 </section>
 
-                { appearsOnPreview && appearsOnPreview.length > 0 && <section className="mb-20">
-                    <div className="mb-4 flex items-end justify-between">
-                        <h2 className="text-xl md:text-2xl font-bold">Aparece em</h2>
-                        <Link href={`/artist/${artist?.id}/albums`} className="text-sm md:text-base hover:text-white hover:underline text-white/60">Mostrar tudo</Link>
-                    </div>
-                    <AppearsOn albums={appearsOnPreview} />
-                </section>}
+                { appearsOnPreview && appearsOnPreview.length > 0 && 
+                    <section>
+                        <div className="mb-4 flex items-end justify-between">
+                            <h2 className="text-xl md:text-2xl font-bold">Aparece em</h2>
+                            <Link href={`/artist/${artist?.id}/albums`} className="text-sm md:text-base hover:text-white hover:underline text-white/60">Mostrar tudo</Link>
+                        </div>
+                        <AppearsOn albums={appearsOnPreview} />
+                    </section>
+                }
 
             </div>
         </div>
