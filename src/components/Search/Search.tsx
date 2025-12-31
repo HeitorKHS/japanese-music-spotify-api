@@ -1,4 +1,5 @@
 import { FaSearch } from "react-icons/fa";
+import { Button } from "../Button/Button";
 
 export function Search(){
 
@@ -18,9 +19,13 @@ export function Search(){
                     placeholder="Músicas, artistas e álbuns"
                     className="flex-1 py-3 min-w-0 focus:outline-none"
                 />
-                <button className="font-semibold text-sm mx-2 px-3 py-2 bg-pink-500 hover:bg-pink-600 rounded-lg transition-all duration-300 shrink-0">
+                <Button
+                    variant="primary"
+                    size="sm"
+                    className="mx-2"
+                >
                     Buscar
-                </button>
+                </Button>
             </div>
         </div>
 

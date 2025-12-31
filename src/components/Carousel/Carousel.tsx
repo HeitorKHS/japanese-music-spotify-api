@@ -5,6 +5,7 @@ import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { ArtistCard } from "../ArtistCard/ArtistCard";
 import Link from "next/link";
+import { Button } from "../Button/Button";
 
 interface CarouselProps{
     title: string,
@@ -163,14 +164,12 @@ export function Carousel({title, artists, link}: CarouselProps){
 
     return(
 
-        <section className="relative pt-5 pb-10" aria-label={title}>
+        <section className="pt-5 pb-10" aria-label={title}>
             <div className="content-container flex items-end justify-between mb-3">
                 <h4 className="text-xl md:text-2xl font-semibold">{title}</h4>
                 <Link href={link} className="text-sm md:text-base hover:text-white hover:underline text-white/60"> Mostrar tudo</Link>
             </div>
-            <div 
-                className="content-container overflow-x-hidden"
-            >
+            <div className="content-container relative overflow-x-hidden">
                 <div 
                     className={`flex -ml-2 md:-ml-4 select-none
                         ${isMobile && isDragging ? 'cursor-grabbing' : ''}
@@ -184,37 +183,40 @@ export function Carousel({title, artists, link}: CarouselProps){
                     onTouchStart={isMobile ? handleTouchStart : undefined}
                 >
                     {artists.map((artist) => (
-                        <div key={artist.id} style={{ width: `${100 / itemsVisible}%` }} className="shrink-0 p-3 hover:bg-white/5 rounded-xl hover:cursor-pointer transition-colors">
+                        <div key={artist.id} style={{ width: `${100 / itemsVisible}%` }} className="shrink-0">
                             <ArtistCard artist={artist} />
                         </div>
                     ))}
                 </div>
-            </div>
-
-            { !isMobile && (
-                <>
-                    <button
-                        type="button"
-                        aria-label="Anterior"
-                        className={`absolute inset-y-0 left-0 inline-flex justify-center items-center w-10 md:w-14.5 group transition-opacity duration-300 ${index === 0 ? 'opacity-0 pointer-events-none' : 'cursor-pointer hover:bg-transparent'}`}
-                        onClick={handlePrev}
-                        disabled={index === 0}
-                    >
-                        <MdOutlineKeyboardArrowLeft size={50} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
-                    </button>
-
-                    <button 
-                        type="button"
-                        aria-label="Próximo"
-                        className={`absolute inset-y-0 right-0 inline-flex justify-center items-center w-10 md:w-14.5 group transition-opacity duration-300 ${index === maxIndex ? 'opacity-0 pointer-events-none' : 'cursor-pointer hover:bg-transparent'}`}
-                        onClick={handleNext}
-                        disabled={index === maxIndex}
-                    >
-                        <MdOutlineKeyboardArrowRight size={50} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
-                    </button>
-                </>
-            )} 
-            
+                { !isMobile &&  (
+                    <>
+                        <Button
+                            variant="ghost"
+                            size="lg"
+                            aria-label="Anterior"
+                            className={`group absolute inset-y-0 left-0 min-w-10 md:min-w-14.5 rounded-r-xl transition-opacity duration-500
+                                    ${index === 0 ? "opacity-0" : "cursor-pointer"}
+                            `}
+                            onClick={handlePrev}
+                            disabled={index === 0}
+                        >
+                            <MdOutlineKeyboardArrowLeft size={50} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="lg"
+                            aria-label="Próximo"
+                            className={`group absolute inset-y-0 right-0 min-w-10 md:min-w-14.5 rounded-l-xl transition-opacity duration-500
+                                    ${index === maxIndex ? "opacity-0" : "cursor-pointer"}
+                            `}
+                            onClick={handleNext}
+                            disabled={index === maxIndex}
+                        >
+                            <MdOutlineKeyboardArrowRight size={50} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
+                        </Button>
+                    </>
+                )} 
+            </div>    
         </section>
 
     )
