@@ -38,15 +38,6 @@ export default async function Artist({params}: ArtistProps){
 
                 {/*Artist Info*/}
                 <div className="content-container z-10 flex flex-col justify-end text-white py-2">
-                    <div className="relative max-w-55 aspect-square rounded-full overflow-hidden">
-                        <Image
-                            src={artist?.images?.[0].url || "/img/no_image.png"}
-                            alt={artist?.name || "Imagem não encontrado"}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
                     <span className="capitalize text-white/60">{artist?.type}</span>
                     <h1 className="mb-4 m-0 text-4xl md:text-6xl lg:text-7xl font-bold">{artist?.name}</h1>
                     <div className="flex flex-wrap items-center sm:gap-6 text-white/60">

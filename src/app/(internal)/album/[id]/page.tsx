@@ -46,7 +46,7 @@ export default async function Album({params}: AlbumProps){
                 <div className="absolute inset-0 bg-linear-to-r from-[#171717]/80 to-transparent" />
 
                 {/*Album information*/}
-                <div className="content-container z-10 flex flex-col md:flex-row items-center md:items-end gap-4 py-2">
+                <div className="content-container z-10 flex flex-col md:flex-row items-center md:items-end gap-10 py-2">
                     <div className="relative w-full max-w-70 aspect-square rounded-xl overflow-hidden">
                         <Image
                             src={album?.images?.[0].url || "/img/no_image.png"}
@@ -56,7 +56,7 @@ export default async function Album({params}: AlbumProps){
                             priority
                         />
                     </div>
-                    <div className="flex flex-col items-center md:items-start">
+                    <div className="flex flex-col items-start md:items-start">
                         <span className="capitalize text-neutral-500">{album?.album_type}</span>
                         <h1 className="mt-5 text-2xl md:text-4xl lg:text-5xl font-bold">{album?.name}</h1>
                         <div className="mt-5 flex flex-col md:flex-row text-neutral-500 text-sm font-semibold">
@@ -91,7 +91,7 @@ export default async function Album({params}: AlbumProps){
             </div>
 
             {/*Content*/}
-            <div className="content-container mt-20 mb-20">
+            <div className="content-container my-20">
                 <section>
                     <h2 className="text-xl md:text-2xl font-bold mb-4">Músicas</h2>
                     <TrackList.withOutImage tracks={album?.tracks.items || []} />
