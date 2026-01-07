@@ -1,32 +1,51 @@
-import { FaSearch } from "react-icons/fa";
+'use client'
+
 import { Button } from "../Button/Button";
+import { useState } from "react";
+import { BiSearch, BiX  } from "react-icons/bi";
+import { useRouter } from "next/navigation";
 
 export function Search(){
 
-    return(
+    const [value, setValue] = useState<string>("");
+    const router = useRouter();
 
-        <div className="relative max-w-xl mx-auto group" role="search">
-            <div className="absolute -inset-1 bg-linear-to-r from-pink-400 via-pink-500 to-purple-500 blur-xl opacity-40
-                group-hover:from-pink-600 group-hover:via-pink-700 group-hover:to-purple-800 transition duration-500
-            "/>
-            <div className="relative flex items-center bg-neutral-900 rounded-xl border-black/40 overflow-hidden">
-                <FaSearch  size={15} className="text-neutral-500 mx-3 shrink-0"/>
-                <label htmlFor="search-input" className="sr-only">
-                    Buscar artistas, músicas ou álbuns...
-                </label>
-                <input 
-                    type="search" 
-                    placeholder="Músicas, artistas e álbuns"
-                    className="flex-1 py-3 min-w-0 focus:outline-none"
-                />
+    const handleClear = () => {
+        setValue("");
+    };
+
+    const handleEnter = (e: React.KeyboardEvent) => {
+        if(e.key === "Enter" && value.trim()){
+            router.push(`/search/${encodeURIComponent(value.trim())}`);
+        }
+    }
+
+    return(
+// flex items-center h-full bg-neutral-900 rounded-xl border-black/40 overflow-hidden
+      
+        <div className="relative">
+            <BiSearch size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500"/>
+            <label htmlFor="search-input" className="sr-only">
+                Buscar artistas, músicas ou álbuns...
+            </label>
+            <input 
+                type="search" 
+                placeholder="Músicas, artistas e álbuns"
+                onChange={(e) => setValue(e.target.value)}
+                value={value}
+                onKeyDown={handleEnter}
+                className="pl-10 px-8 py-1 rounded-xl bg-neutral-900 border border-neutral-700 placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-pink-500 transition-all duration-400"
+            />
+            {value && (
                 <Button
-                    variant="primary"
-                    size="sm"
-                    className="mx-2"
+                    variant="ghost"
+                    aria-label="Limpar busca"
+                    onClick={handleClear}
+                    className="text-neutral-500 mx-2 cursor-pointer"
                 >
-                    Buscar
+                    <BiX size={30}  className="absolute right-2 top-1/2 -translate-y-1/2"/>
                 </Button>
-            </div>
+            )}
         </div>
 
     )

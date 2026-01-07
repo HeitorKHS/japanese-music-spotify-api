@@ -8,7 +8,7 @@ const button = tv({
     variants:{
         variant:{
             primary:"bg-pink-500 hover:bg-pink-600 rounded-lg font-semibold px-3 py-2",
-            ghost:"hover:bg-neutral-800/70",
+            ghost:"hover:text-white",
         },
         size:{
             sm:"text-sm",

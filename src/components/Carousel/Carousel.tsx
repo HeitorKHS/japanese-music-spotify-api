@@ -198,24 +198,24 @@ export function Carousel({title, artists, link}: CarouselProps){
                         <Button
                             variant="ghost"
                             aria-label="Anterior"
-                            className={`absolute inset-y-0 left-0 min-w-13.5 rounded-r-xl transition-opacity duration-500
+                            className={`group absolute inset-y-0 left-0 min-w-13.5 rounded-r-xl hover:bg-neutral-800/70  transition-opacity duration-500
                                 ${index === 0 ? "opacity-0" : "cursor-pointer"}
                             `}
                             onClick={handlePrev}
                             disabled={index === 0}
                         >
-                            <MdOutlineKeyboardArrowLeft size={40} />
+                            <MdOutlineKeyboardArrowLeft size={40} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
                         </Button>
                         <Button
                             variant="ghost"
                             aria-label="Próximo"
-                            className={`absolute inset-y-0 right-0 min-w-13.5 rounded-l-xl transition-opacity duration-500
+                            className={`group absolute inset-y-0 right-0 min-w-13.5 rounded-l-xl hover:bg-neutral-800/70  transition-opacity duration-500
                                 ${index === maxIndex ? "opacity-0" : "cursor-pointer"}
                             `}
                             onClick={handleNext}
                             disabled={index === maxIndex}
                         >
-                            <MdOutlineKeyboardArrowRight size={40} />
+                            <MdOutlineKeyboardArrowRight size={40} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
                         </Button>
                         </>
                     )}

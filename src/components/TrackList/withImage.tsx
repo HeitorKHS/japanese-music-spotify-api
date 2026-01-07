@@ -1,6 +1,7 @@
 import { SpotifyTrack } from "@/src/types/spotify";
 import Image from "next/image";
 import { useFormatTime } from "@/src/hooks/useFormatTime";
+import Link from "next/link";
 
 interface WithImageProps{
     tracks: SpotifyTrack[],
@@ -26,7 +27,14 @@ export function withImage({tracks}: WithImageProps){
                         </div>
                         <div className="flex flex-col text-sm flex-1 overflow-hidden">
                             <span className="truncate">{track.name}</span>
-                            <span className="truncate text-white/60">{track.album.name}</span>
+                            <div className="text-neutral-500 truncate">
+                                {track.artists.map((artist, index)=>(
+                                    <span key={artist.id}>
+                                            <Link href={artist.id} className="hover:underline">{artist.name}</Link>
+                                            {index < track.artists.length - 1 && ", "}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
                     </div>
                     <div>
