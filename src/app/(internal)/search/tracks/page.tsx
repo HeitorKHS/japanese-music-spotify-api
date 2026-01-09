@@ -23,10 +23,8 @@ export default async function Tracks({params}: TracksProps){
                     <div className="flex-1">Título</div>
                     <div><IoMdTime size={20} /></div>
                 </div>
+                <TrackList.withImage tracks={tracks} />
             </div>
-            
-            <TrackList.withImage tracks={tracks} />
-        
         </section>
     )
 

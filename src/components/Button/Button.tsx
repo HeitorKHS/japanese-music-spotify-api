@@ -3,12 +3,12 @@ import { tv, VariantProps } from "tailwind-variants";
 
 const button = tv({
     base:[
-        "flex items-center justify-center gap-2 duration-200 ease-out whitespace-nowrap",
+        "flex items-center justify-center gap-2 duration-200 ease-out whitespace-nowrap cursor-pointer",
     ],
     variants:{
         variant:{
             primary:"bg-pink-500 hover:bg-pink-600 rounded-lg font-semibold px-3 py-2",
-            ghost:"hover:text-white",
+            ghost:"text-neutral-400 hover:text-white",
         },
         size:{
             sm:"text-sm",

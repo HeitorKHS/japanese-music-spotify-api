@@ -6,21 +6,29 @@ import { AlbumCard } from "@/src/components/AlbumCard/AlbumCard";
 import { TrackList } from "@/src/components/TrackList";
 
 interface SearchProps{
-    params:{
-        query: string,
+    searchParams:{
+        q: string,
     },
 };
 
-export default async function Search({params}: SearchProps){
+export default async function Search({searchParams}: SearchProps){
 
-    const { query } = await params;
+    const { q } = await searchParams;
+    const query = q || "";
+
+    if(!query.trim()){
+        return(
+            <></>
+        )
+    }
+
     const data = getSearchData(query);
     const { artists, albums, tracks } = await data;
 
     return(
 
-        <div className="my-10">
-   
+        <div className="my-4">
+
             <section className="inline-flex flex-col mb-10">
                 <h1 className="text-xl md:text-2xl font-bold mb-4">Principal Resultado</h1>
                 <div className="relative py-6 px-10 rounded-xl transition-colors hover:bg-neutral-800/70">

@@ -6,6 +6,7 @@ import { FaSpotify } from "react-icons/fa";
 import { TrackList } from "@/src/components/TrackList";
 import { Discography } from "../components/Discography";
 import { AppearsOn } from "../components/AppearsOn";
+import { IoMdTime } from "react-icons/io";
 
 interface ArtistProps{
     params:{
@@ -69,7 +70,15 @@ export default async function Artist({params}: ArtistProps){
 
                 <section className="mb-20">
                     <h2 className="text-xl md:text-2xl font-bold mb-4">Músicas Populares</h2>
-                    <TrackList.withImage tracks={topTracks} />
+                    <div>
+                        <div className="flex items-center p-2 gap-5 text-neutral-500 font-semibold text-sm">
+                            <div className="w-5">#</div>
+                            <div className="flex-1">Título</div>
+                            <div><IoMdTime size={20} /></div>
+                        </div>
+                        <TrackList.withImage tracks={topTracks} />
+                    </div>
+                    
                 </section>
 
                 <section className="mb-20">

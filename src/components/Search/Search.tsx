@@ -14,9 +14,10 @@ export function Search(){
         setValue("");
     };
 
-    const handleEnter = (e: React.KeyboardEvent) => {
+    const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if(e.key === "Enter" && value.trim()){
-            router.push(`/search/${encodeURIComponent(value.trim())}`);
+            e.currentTarget.blur();
+            router.push(`/search?q=${encodeURIComponent(value.trim())}`);
         }
     }
 
@@ -34,7 +35,7 @@ export function Search(){
                 onChange={(e) => setValue(e.target.value)}
                 value={value}
                 onKeyDown={handleEnter}
-                className="pl-10 px-8 py-1 rounded-xl bg-neutral-900 border border-neutral-700 placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-pink-500 transition-all duration-400"
+                className="pl-10 px-8 py-1 w-full rounded-xl bg-neutral-900 border border-neutral-700 placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-pink-500 transition-all duration-400"
             />
             {value && (
                 <Button

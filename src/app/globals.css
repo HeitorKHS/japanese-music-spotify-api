@@ -67,11 +67,11 @@ input[type="search"]::-ms-clear {
     animation: float 3s ease-in-out infinite;
   }
 
-  /*.fadeInDown {
-    animation: fadeInDown 1s ease-out;
+  .fadeInDown {
+    animation: fadeInDown 0.5s ease-out;
   }
 
-  .fadeInUp {
+  /*.fadeInUp {
     animation: fadeInUp 1s ease-out;
   }*/
 
@@ -84,10 +84,10 @@ input[type="search"]::-ms-clear {
     }
   }
 
-  /*@keyframes fadeInDown {
+  @keyframes fadeInDown {
     0%{
       opacity: 0;
-      transform: translateY(-40px);
+      transform: translateY(-10px);
     }
     100%{
       opacity: 1;
@@ -95,7 +95,7 @@ input[type="search"]::-ms-clear {
     }
   }
 
-  @keyframes fadeInUp {
+  /*@keyframes fadeInUp {
     0%{
       opacity: 0;
       transform: translateY(40px);

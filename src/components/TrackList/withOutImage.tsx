@@ -12,12 +12,15 @@ export function withOutImage({tracks}: withOutImageProps){
 
         <div>
             {tracks.map((track, index)=>(
-                <div key={track.id} className="flex items-center p-2 gap-5">
+                <div key={track.id} className="relative flex items-center p-2 gap-5 hover:bg-neutral-800/70 rounded-sm">
                     <div className="w-5">{index + 1}</div>
                     <div className="flex-1 flex items-center gap-3 min-w-0 overflow-hidden">
                         <div className="flex flex-col text-sm flex-1 overflow-hidden">
+                            <Link href={track.external_urls.spotify} draggable="false" className="after:absolute after:inset-0 after:z-10">
+                                <span className="sr-only">Ver música no spotify</span>
+                            </Link>
                             <span className="truncate">{track.name}</span>
-                            <div className="text-neutral-500 truncate">
+                            <div className="text-neutral-500 truncate w-fit max-w-full">
                                 {track.artists.map((artist, index)=>(
                                     <span key={artist.id}>
                                             <Link href={artist.id} className="hover:underline">{artist.name}</Link>

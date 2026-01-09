@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Search } from "@/src/components/Search/Search";
 
 interface Links{
     href: string,
@@ -26,12 +27,15 @@ export default async function Layout({ children, params }: LayoutProps){
     return(
 
         <main className="relative min-h-screen content-container">
-            <div className="sticky top-16 bg-neutral-900 z-50 py-4">
+            <div className="sticky top-16 bg-neutral-900 z-20 py-4">
                 <nav className="flex gap-3">
                     {Links.map((link)=>(
                         <Link key={link.href} href={link.href} className="bg-neutral-700/70 rounded-4xl text-sm py-1 px-2">{link.label}</Link>
                     ))}
                 </nav>
+                <div className="md:hidden pt-8">
+                    <Search/>
+                </div>
             </div>
             {children}
         </main>
