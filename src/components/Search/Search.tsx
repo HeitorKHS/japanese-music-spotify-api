@@ -1,9 +1,8 @@
-'use client'
-
-import { Button } from "../Button/Button";
+import { BiSearch, BiX } from "react-icons/bi";
 import { useState } from "react";
-import { BiSearch, BiX  } from "react-icons/bi";
 import { useRouter } from "next/navigation";
+import { Button } from "../Button/Button";
+
 
 export function Search(){
 
@@ -11,40 +10,42 @@ export function Search(){
     const router = useRouter();
 
     const handleClear = () => {
+
         setValue("");
+
     };
 
-    const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleEnter = (e:React.KeyboardEvent<HTMLInputElement>) => {
+
         if(e.key === "Enter" && value.trim()){
             e.currentTarget.blur();
             router.push(`/search?q=${encodeURIComponent(value.trim())}`);
-        }
-    }
+        };
+
+    };
 
     return(
-// flex items-center h-full bg-neutral-900 rounded-xl border-black/40 overflow-hidden
-      
+
         <div className="relative">
-            <BiSearch size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500"/>
-            <label htmlFor="search-input" className="sr-only">
-                Buscar artistas, músicas ou álbuns...
-            </label>
+            <BiSearch className="absolute left-2 top-1/2 -translate-y-1/2"/>
+            <label htmlFor="search-input" className="sr-only">Buscar artistas, músicas ou álbuns...</label>
             <input 
                 type="search" 
-                placeholder="Músicas, artistas e álbuns"
-                onChange={(e) => setValue(e.target.value)}
+                placeholder="Artistas, Músicas e álbuns"
                 value={value}
+                onChange={(e)=>setValue(e.target.value)}
                 onKeyDown={handleEnter}
-                className="pl-10 px-8 py-1 w-full rounded-xl bg-neutral-900 border border-neutral-700 placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-pink-500 transition-all duration-400"
+                className="px-8 py-1 rounded-xl bg-neutral-900 border border-neutral-700 focus:border-pink-500 focus:outline-none transition-all duration-400"
             />
             {value && (
                 <Button
                     variant="ghost"
+                    size="lg"
                     aria-label="Limpar busca"
                     onClick={handleClear}
-                    className="text-neutral-500 mx-2 cursor-pointer"
+                    className="absolute right-2 top-1/2 -translate-y-1/2"
                 >
-                    <BiX size={30}  className="absolute right-2 top-1/2 -translate-y-1/2"/>
+                    <BiX size={20}/>
                 </Button>
             )}
         </div>

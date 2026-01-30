@@ -1,23 +1,22 @@
 import { Hero } from "../components/Hero/Hero";
-import { getHomeData } from "../services/playlistService";
 import { Carousel } from "../components/Carousel/Carousel";
-import { SPOTIFY_PLAYLISTS } from "../constants/spotify";
+import { getHomeData } from "../services/playlistService";
 
 export default async function Home() {
 
   const data = await getHomeData();
-  const { tokyoArtits, indieArtits, womenArtits, rapArtits, rockArtits } = data;
+  const {tokyoArtists, rockArtists, womenArtists, rapArtists, indieArtists} = data;  
 
   return (
 
-    <>
+    <div>
       <Hero/>
-      <Carousel title="Artista populares" artists={tokyoArtits} link={`/section/${SPOTIFY_PLAYLISTS.TOKYO_SUPER_HITS}`}/>
-      <Carousel title="Melhor do rock" artists={rockArtits} link={`/section/${SPOTIFY_PLAYLISTS.ROCK_JAPAN}`}/>
-      <Carousel title="Apenas mulheres" artists={womenArtits} link={`/section/${SPOTIFY_PLAYLISTS.JAPANESE_WOMEN}`}/>
-      <Carousel title="Destaques do rap" artists={rapArtits} link={`/section/${SPOTIFY_PLAYLISTS.RAP_JAPAN}`}/>
-      <Carousel title="Indie Japonês" artists={indieArtits} link={`/section/${SPOTIFY_PLAYLISTS.INDIE_JAPAN}`}/>
-    </>
+      <Carousel title="Artista populares" artists={tokyoArtists.artists} link={`/section/${tokyoArtists.href}`}/>
+      <Carousel title="Melhor do rock" artists={rockArtists.artists} link={`/section/${rockArtists.href}`}/>
+      <Carousel title="Apenas mulheres" artists={womenArtists.artists} link={`/section/${womenArtists.href}`}/>
+      <Carousel title="Destaques do rap" artists={rapArtists.artists} link={`/section/${rapArtists.href}`}/>
+      <Carousel title="Indie Japonês" artists={indieArtists.artists} link={`/section/${indieArtists.href}`}/>
+    </div>
     
   );
   

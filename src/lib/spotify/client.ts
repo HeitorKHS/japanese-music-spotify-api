@@ -62,6 +62,8 @@ export async function spotifyFetch<T>(endpoint: string, options?: RequestInit): 
 
     const url = `${SPOTIFY_API.BASE_URL}${endpoint}`;
 
+    console.log(url);
+
     try{
 
         const response = await fetch(url, {

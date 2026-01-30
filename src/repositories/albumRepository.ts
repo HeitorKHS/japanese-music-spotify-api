@@ -1,11 +1,12 @@
-import { spotifyFetch, buildQueryString } from "../lib/spotify/client";
+import { buildQueryString, spotifyFetch } from "../lib/spotify/client";
 import { SpotifyAlbum } from "../types/spotify";
 
-//Search for details about a specific album by ID
-export async function getAlbum(albumId: string): Promise<SpotifyAlbum>{
+export class AlbumRepository{
 
-    return spotifyFetch<SpotifyAlbum>(
-        `/albums/${albumId}`
-    );
+    static async getAlbum(albumId: string): Promise<SpotifyAlbum>{
+
+        return await spotifyFetch<SpotifyAlbum>(`/albums/${albumId}`);
+
+    }
 
 }

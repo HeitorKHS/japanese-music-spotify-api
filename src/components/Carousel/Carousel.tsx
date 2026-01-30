@@ -6,6 +6,7 @@ import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-i
 import { ArtistCard } from "../ArtistCard/ArtistCard";
 import Link from "next/link";
 import { Button } from "../Button/Button";
+import { LuUserRoundX } from "react-icons/lu";
 
 interface CarouselProps{
     title: string,
@@ -168,61 +169,61 @@ export function Carousel({title, artists, link}: CarouselProps){
 
     }, [translateX, maxTranslate]);
 
-
     return(
 
-        <section className="pt-5 pb-10" aria-label={title}>
-            <div className="content-container flex items-end justify-between mb-3">
-                <h4 className="text-xl md:text-2xl font-semibold">{title}</h4>
-                <Link href={link} className="text-sm md:text-base hover:text-white hover:underline text-white/60"> Mostrar tudo</Link>
-            </div>
-            <div>
-                <div className="content-container relative overflow-x-hidden">
-                    <div className={`flex gap-1
-                        ${isDragging ? '' : 'transition-transform duration-300 ease-out'} 
-                    `}
-                        style={{transform: `translateX(-${translateX}px)`}}
-                        ref={carouselRef}
-                        onMouseDown={isArrow ? handleMouseDown : undefined}
-                        onTouchStart={isArrow ? handleTouchStart : undefined}
-                    >
-                        {artists.map((artist) => (
-                            <div key={artist.id} className="shrink-0"
-                                style={{ width: `calc((100% - (${itemsVisible-1} * 4px)) / ${itemsVisible})` }}
-                            >
-                                <ArtistCard artist={artist}/>
-                            </div>
-                        ))}
+        <>
+            {artists.length > 0 && (           
+                <section className="pt-5 pb-10" aria-label={title}>
+                    <div className="content-container flex items-end justify-between">
+                        <h2 className="text-xl md:text-2xl font-semibold">{title}</h2>
+                        {artists.length > 0 && (
+                            <Link href={link} className="text-sm md:text-base hover:text-white hover:underline text-white/60"> Mostrar tudo</Link>
+                        )}
                     </div>
-                    {!isArrow && (<>
-                        <Button
-                            variant="ghost"
-                            aria-label="Anterior"
-                            className={`group absolute inset-y-0 left-0 min-w-13.5 rounded-r-xl hover:bg-neutral-800/70  transition-opacity duration-500
-                                ${index === 0 ? "opacity-0" : "cursor-pointer"}
-                            `}
-                            onClick={handlePrev}
-                            disabled={index === 0}
-                        >
-                            <MdOutlineKeyboardArrowLeft size={40} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            aria-label="Próximo"
-                            className={`group absolute inset-y-0 right-0 min-w-13.5 rounded-l-xl hover:bg-neutral-800/70  transition-opacity duration-500
-                                ${index === maxIndex ? "opacity-0" : "cursor-pointer"}
-                            `}
-                            onClick={handleNext}
-                            disabled={index === maxIndex}
-                        >
-                            <MdOutlineKeyboardArrowRight size={40} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
-                        </Button>
-                        </>
-                    )}
-                </div>
-            </div>
-        </section>
-
+                    <div className="mt-2 md:mt-5">
+                        <div className="content-container relative overflow-x-hidden">
+                            <div className={`flex gap-1 select-none
+                                ${isDragging ? '' : 'transition-transform duration-300 ease-out'} `}
+                                style={{transform: `translateX(-${translateX}px)`}}
+                                ref={carouselRef}
+                                onMouseDown={isArrow ? handleMouseDown : undefined}
+                                onTouchStart={isArrow ? handleTouchStart : undefined}
+                            >
+                                {artists.map((artist) => (
+                                    <div key={artist.id} className="shrink-0"
+                                        style={{ width: `calc((100% - (${itemsVisible-1} * 4px)) / ${itemsVisible})` }}
+                                    >
+                                        <ArtistCard artist={artist}/>
+                                    </div>
+                                ))}
+                            </div>
+                            {!isArrow && (<>
+                                <Button
+                                    variant="ghost"
+                                    aria-label="Anterior"
+                                    className={`group absolute inset-y-0 left-0 min-w-30 rounded-r-xl transition-opacity duration-300 
+                                        ${index === 0 ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+                                    onClick={handlePrev}
+                                    disabled={index === 0}
+                                >
+                                    <MdOutlineKeyboardArrowLeft size={40} className="opacity-0 group-hover:opacity-100 text-white transition-opacity duration-300"/>
+                                </Button>
+                                <Button
+                                    variant="ghost"
+                                    aria-label="Próximo"
+                                    className={`group absolute inset-y-0 right-0 min-w-30 rounded-l-xl transition-opacity duration-300 opacity-100
+                                        ${index === maxIndex ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+                                    onClick={handleNext}
+                                    disabled={index === maxIndex}
+                                >
+                                    <MdOutlineKeyboardArrowRight size={40} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
+                                </Button>
+                            </>)}
+                        </div>
+                    </div>
+                </section>
+            )}
+        </>
     )
 
 }

@@ -42,7 +42,7 @@ input[type="search"]::-ms-clear {
 
   .content-container{
     width: 100%;
-    padding-inline: 58px;
+    padding-inline:120px;
   }
 
   @media (max-width: 999px) {

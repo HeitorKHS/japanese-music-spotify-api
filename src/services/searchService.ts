@@ -1,5 +1,5 @@
-import { SpotifyAlbum, SpotifyArtist, SpotifyTrack } from "../types/spotify";
-import { getSearchAll } from "../repositories/searchService";
+import { SearchRepository } from "../repositories/searchRepository";
+import { SpotifyArtist, SpotifyAlbum, SpotifyTrack } from "../types/spotify";
 import { JAPANESE_GENRES } from "../constants/spotify";
 
 interface SearchData{
@@ -10,11 +10,9 @@ interface SearchData{
 
 function filterJapaneseArtists(artists: SpotifyArtist[]): SpotifyArtist[]{
 
-    return artists.filter(artist =>
-        //Ensure that 'artist.genres' exists and has items. If not, return 'false' immediately
-        artist.genres && artist.genres.length > 0 &&
+    return artists.filter(({genres = []}) =>
         //Checks if 'any' of the artist's genres corresponds to 'any' of the Japanese genres
-        artist.genres.some(genre =>
+        genres.some(genre =>
             JAPANESE_GENRES.some(jpGenre =>
                 genre.toLowerCase().includes(jpGenre.toLowerCase())
             )
@@ -23,41 +21,30 @@ function filterJapaneseArtists(artists: SpotifyArtist[]): SpotifyArtist[]{
 
 }
 
-function filterAlbums(albums: SpotifyAlbum[], artistsId: string[]){
-    return albums.filter(album => album.artists.some(artist => artistsId.includes(artist.id)));
+function filterAlbums(albums: SpotifyAlbum[], artistsId: Set<string>){
+    return albums.filter(album => album.artists.some(artist => artistsId.has(artist.id)));
 }
 
-function filterTracks(tracks: SpotifyTrack[], artistsId: string[]){
-    return tracks.filter(track => track.artists.some(artist => artistsId.includes(artist.id)));
+function filterTracks(tracks: SpotifyTrack[], artistsId: Set<string>){
+    return tracks.filter(track => track.artists.some(artist => artistsId.has(artist.id)));
 }
 
-export async function getSearchData(search: string): Promise<SearchData>{
+export async function getSearch(q: string): Promise<SearchData>{
 
-    try{
+    const response = await SearchRepository.getSearch(q);
 
-        const response = await getSearchAll(search);
+    const filteredArtists = filterJapaneseArtists(response.artists);
 
-        const filterArtists = filterJapaneseArtists(response.artists);
+    const artistsId = new Set(filteredArtists.map(artist => artist.id));
 
-        const filterIds = filterArtists.map(artist => artist.id);
+    const filteredAlbums = filterAlbums(response.albums, artistsId);
 
-        const filterAlbum = filterAlbums(response.albums, filterIds);
+    const filteredTracks = filterTracks(response.tracks, artistsId);
 
-        const filterTrack = filterTracks(response.tracks, filterIds);
-
-        return{
-            artists: filterArtists,
-            albums: filterAlbum,
-            tracks: filterTrack,
-        };
-
-    } catch(error){
-        console.error('Erro ao buscar dados da pesquisa:', error);
-        return{
-            artists: [],
-            albums: [],
-            tracks: [],
-        }
-    }
+    return{
+        artists: filteredArtists,
+        albums: filteredAlbums,
+        tracks: filteredTracks,
+    };
 
 }

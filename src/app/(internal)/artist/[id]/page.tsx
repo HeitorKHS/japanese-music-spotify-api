@@ -1,12 +1,11 @@
-import { getArtistData } from "@/src/services/artistService"
+import { getArtistData } from "@/src/services/artistService";
 import Image from "next/image";
 import Link from "next/link";
-import { LuUsers, LuTrendingUp } from "react-icons/lu";
+import { LuTrendingUp, LuUsers } from "react-icons/lu";
 import { FaSpotify } from "react-icons/fa";
-import { TrackList } from "@/src/components/TrackList";
-import { Discography } from "../components/Discography";
-import { AppearsOn } from "../components/AppearsOn";
-import { IoMdTime } from "react-icons/io";
+import { PreviewDiscography } from "@/src/components/ArtistComponents/PreviewDiscography/PreviewDiscography";
+import { AppearsOn } from "@/src/components/ArtistComponents/AppearsOn/AppearsOn";
+import { TopTracks } from "@/src/components/ArtistComponents/TopTracks/TopTracks";
 
 interface ArtistProps{
     params:{
@@ -16,48 +15,56 @@ interface ArtistProps{
 
 export default async function Artist({params}: ArtistProps){
 
-    const { id } = await params;
+    const {id} = await params;
     const data = await getArtistData(id);
-    const { artist, topTracks, albumsPreview, singlesEpsPreview, appearsOnPreview } = data;
+    const {artist, topTracks, albumsPreview, singlesEpsPreview, appearsOnPreview} = data;
 
     return(
 
-        <div>
-
+        <div className="min-h-[calc(100dvh-48px)] md:min-h-[calc(100dvh-64px)]">
+            
             {/*Hero*/}
-            <div className="relative min-h-[50vh] md:min-h-[60vh] overflow-hidden flex">
+            <div className="relative h-[60dvh] overflow-hidden">
+
+                {/*Background color*/}
+                <div className="absolute inset-0 z-10"> 
+                    <div className="absolute inset-0 bg-linear-to-t from-neutral-900 md:from-neutral-900/70 via-neutral-900/10 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-r from-neutral-900/70 md:from-neutral-900 md:via-neutral-900 to-transparent"/>
+                </div>
+
                 {/*Background Image*/}
-                <Image
-                    src={artist?.images?.[0].url || "/img/no_image.png"}
-                    alt={artist?.name || "Imagem não encontrado"}
-                    fill
-                    className="object-cover"
-                    priority
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-[#171717] via-[#171717]/70 to-transparent" />
-                <div className="absolute inset-0 bg-linear-to-r from-[#171717]/80 to-transparent" />
+                <div className="absolute right-0 top-0 bottom-0 left-0 md:left-1/2">
+                    <Image
+                        src={artist?.images?.[0].url || "/img/no_image.png"}
+                        alt={artist?.name || "Imagem não encontrado"}
+                        fill
+                        className="object-cover object-[0_30%]"
+                        priority
+                    />
+                </div>
 
                 {/*Artist Info*/}
-                <div className="content-container z-10 flex flex-col justify-end text-white py-2">
-                    <span className="capitalize text-white/60">{artist?.type}</span>
-                    <h1 className="mb-4 m-0 text-4xl md:text-6xl lg:text-7xl font-bold">{artist?.name}</h1>
-                    <div className="flex flex-wrap items-center sm:gap-6 text-white/60">
-                        <div className="flex items-center gap-2">
-                            <LuTrendingUp/>
-                            {artist?.popularity}/100 de popularidade
+                <div className="absolute bottom-0 left-0 right-0 z-20">
+                    <div className="content-container pb-5">
+                        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-5">{artist?.name}</h1>
+                        <div className="hidden md:flex flex-wrap items-center gap-5 text-neutral-400 mb-5">
+                            <div className="flex items-center gap-3">
+                                <LuTrendingUp/>
+                                <span>{artist?.popularity}/100 de popularidade</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <LuUsers/>
+                                <span>{artist?.followers?.total.toLocaleString("pt-BR")} Seguidores</span>
+                            </div>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <LuUsers/>
-                            {artist?.followers?.total.toLocaleString("pt-BR")} Seguidores
-                        </div>
-                    </div>
-                    <div className="mt-5 mb-2">
+
+                        {/*Spotify Link*/}
                         <Link 
                             href={artist?.external_urls.spotify || "/"}
                             target="_blank"
                             rel="noopener noreferrer" //Privacity
                             className="inline-flex gap-4 items-center justify-center font-semibold bg-green-500 px-4 py-1 rounded-full"
-                            >
+                        >
                             <FaSpotify size={20}/>
                             Abra no Spotify                                
                         </Link>
@@ -66,40 +73,19 @@ export default async function Artist({params}: ArtistProps){
             </div>
 
             {/*Content*/}
-            <div className="content-container mt-20 mb-20">
+            <div className="content-container py-10 md:py-15">
 
-                <section className="mb-20">
-                    <h2 className="text-xl md:text-2xl font-bold mb-4">Músicas Populares</h2>
-                    <div>
-                        <div className="flex items-center p-2 gap-5 text-neutral-500 font-semibold text-sm">
-                            <div className="w-5">#</div>
-                            <div className="flex-1">Título</div>
-                            <div><IoMdTime size={20} /></div>
-                        </div>
-                        <TrackList.withImage tracks={topTracks} />
-                    </div>
-                    
-                </section>
+                {/*Popular tracks*/}
+                <TopTracks tracks={topTracks} />
 
-                <section className="mb-20">
-                    <div className="mb-4 flex items-end justify-between">
-                        <h2 className="text-xl md:text-2xl font-bold">Discografia</h2>
-                        <Link href={`/artist/${artist?.id}/albums`} className="text-sm md:text-base hover:text-white hover:underline text-white/60">Mostrar tudo</Link>
-                    </div>
-                    <Discography albums={albumsPreview} singleEps={singlesEpsPreview} />
-                </section>
+                {/*Discography*/}
+                <PreviewDiscography artistId={artist?.id || ""} albums={albumsPreview} singleEps={singlesEpsPreview} />
 
-                { appearsOnPreview && appearsOnPreview.length > 0 && 
-                    <section>
-                        <div className="mb-4 flex items-end justify-between">
-                            <h2 className="text-xl md:text-2xl font-bold">Aparece em</h2>
-                            <Link href={`/artist/${artist?.id}/albums`} className="text-sm md:text-base hover:text-white hover:underline text-white/60">Mostrar tudo</Link>
-                        </div>
-                        <AppearsOn albums={appearsOnPreview} />
-                    </section>
-                }
+                {/*Appears on*/}
+                <AppearsOn albums={appearsOnPreview} />
 
             </div>
+
         </div>
 
     )

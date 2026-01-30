@@ -1,31 +1,51 @@
-import { getSearchData } from "@/src/services/searchService";
-import { IoMdTime } from "react-icons/io";
-import { TrackList } from "@/src/components/TrackList";
+import { getSearch } from "@/src/services/searchService";
+import { TrackList } from "@/src/components/TrackList/TrackList";
 
 interface TracksProps{
-    params:{
-        query: string,
+    searchParams:{
+        q: string,
     },
 };
 
-export default async function Tracks({params}: TracksProps){
+export default async function Tracks({searchParams}: TracksProps){
 
-    const {query} = await params;
-    const data = getSearchData(query);
-    const {tracks} = await data;
+    const query = await searchParams;
+
+    const q = query.q?.trim();
+
+    if(!q){
+
+        return(
+
+            <div className="min-h-[calc(100dvh-48px)] md:min-h-[calc(100dvh-64px)]">
+                <div className="flex justify-center items-center">
+                    <p>Busque por artistas, álbuns ou músicas (ex: Aimyon, Aimer).</p>
+                </div>             
+            </div>
+
+        )
+
+    }
+
+    const data = await getSearch(q);
+    const {tracks} = data;
 
     return(
 
-        <section className="my-5">
-            <div>
-                <div className="flex items-center p-2 gap-5 text-neutral-500 font-semibold text-sm">
-                    <div className="w-5">#</div>
-                    <div className="flex-1">Título</div>
-                    <div><IoMdTime size={20} /></div>
-                </div>
-                <TrackList.withImage tracks={tracks} />
+        <section className="min-h-[calc(100dvh-48px)] md:min-h-[calc(100dvh-64px)]">
+            <div className="content-container">
+                {tracks.length > 0 ? (
+                    <TrackList tracks={tracks} withImage={true} />
+                ):(
+                    <div className="flex flex-col">
+                        <h2 className="text-xl md:text-3xl font-bold text-center mt-5">Nenhum resultado.</h2>
+                        <p className="text-neutral-400 text-center mt-5">Tente uma nova busca</p>
+                    </div>
+                )}
+                
             </div>
         </section>
+
     )
 
 }

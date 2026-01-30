@@ -1,54 +1,54 @@
-import { spotifyFetch, buildQueryString } from "../lib/spotify/client";
-import { SpotifyAlbum, SpotifyArtist, SpotifyPagination, SpotifyTrack } from "../types/spotify";
+import { buildQueryString, spotifyFetch } from "../lib/spotify/client";
+import { SpotifyArtist, SpotifyTrack, SpotifyAlbum, SpotifyPagination } from "../types/spotify";
 import { SPOTIFY_MARKET } from "../constants/spotify";
 
-//Search for details about various artists
-export async function getSeveralArtists(artistId: string[]): Promise<SpotifyArtist[]>{
+export class ArtistRepository{
 
-    const idsQuery = artistId.join(",");
-    
-    const response = await spotifyFetch<{ artists: SpotifyArtist[] }>(
-        `/artists?ids=${idsQuery}`
-    );
+    //Search for details about various artists
+    static async getSeveralArtists(artistsId: string[]): Promise<SpotifyArtist[]>{
 
-    return response.artists;
+        const idsQuery = artistsId.join(",");
 
-}
+        const response = await spotifyFetch<{artists: SpotifyArtist[]}>(
+            `/artists?ids=${idsQuery}`
+        );
 
-//Search for details about a specific artist by ID
-export async function getArtistById(artistId: string): Promise<SpotifyArtist>{
+        return response.artists;
 
-    return await spotifyFetch<SpotifyArtist>(`/artists/${artistId}`);
+    }
 
-}
+    //Search for details about a specific artist by ID
+    static async getArtist(artistId: string): Promise<SpotifyArtist>{
 
-//Get artist top tracks
-export async function getArtistTopTracks(artistId: string): Promise<SpotifyTrack[]>{
+        return await spotifyFetch<SpotifyArtist>(`/artists/${artistId}`);
 
-    const query = buildQueryString({
-        market: SPOTIFY_MARKET,
-    });
+    }
 
-    const response = await spotifyFetch<{tracks: SpotifyTrack[]}>(
-        `/artists/${artistId}/top-tracks${query}`
-    );
+    //Get artist top tracks
+    static async getTopTracks(artistId: string): Promise<SpotifyTrack[]>{
 
-    return response.tracks;
+        const query = buildQueryString({
+            market: SPOTIFY_MARKET,
+        });
 
-}
+        const response = await spotifyFetch<{tracks: SpotifyTrack[]}>( `/artists/${artistId}/top-tracks${query}`)
 
-//Get artist albums
-export async function getArtistAlbums(artistId: string, offset = 0, limit = 50, groups: string): Promise<SpotifyPagination<SpotifyAlbum>>{
+        return response.tracks;
 
-    const query = buildQueryString({
-        market: SPOTIFY_MARKET,
-        limit: limit,
-        offset: offset,
-        include_groups: groups,
-    });
+    }
 
-    return await spotifyFetch<SpotifyPagination<SpotifyAlbum>>(
-        `/artists/${artistId}/albums${query}`
-    );
+    //Get artist albums
+    static async getAlbums(artistId: string, offset = 0, limit = 50, groups: string): Promise<SpotifyPagination<SpotifyAlbum>>{
+
+        const query = buildQueryString({
+            market: SPOTIFY_MARKET,
+            limit: limit,
+            offset: offset,
+            include_groups: groups,
+        });
+
+        return await spotifyFetch<SpotifyPagination<SpotifyAlbum>>(`/artists/${artistId}/albums${query}`);
+
+    }
 
 }

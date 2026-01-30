@@ -2,11 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Search } from "../Search/Search";
-import { Button } from "../Button/Button";
-import { BiSun, BiMoon, BiMenu, BiX, BiHome, BiSearch  } from "react-icons/bi";
 import { useState } from "react";
-
+import { Button } from "../Button/Button";
+import { Search } from "../Search/Search";
+import { BiSun, BiMoon, BiMenu, BiX, BiHome, BiSearch  } from "react-icons/bi";
 
 interface Links{
     href: string,
@@ -25,44 +24,43 @@ export function Header(){
     ] as const;
 
     return(
-        
-        <header className="fixed top-0 left-0 right-0 z-50 bg-black h-16">
-            <nav className="relative header-container py-3 flex items-center justify-between">
+
+        <header className="fixed top-0 left-0 right-0 z-50 bg-black">
+            <nav className="relative header-container h-12 md:h-16 flex items-center justify-between">
 
                 {/*Logo*/}
-                <div className="h-10">
+                <div className="relative h-10 w-28">
                     <Link href={"/"} aria-label="Ir para página inicial">
                         <Image
                             src={"/img/jmusic.png"}
                             alt={"Logo"}
-                            width={849}
-                            height={285}
-                            className="h-full w-auto object-contain"
+                            fill
+                            className="object-contain"
                             priority
                         />
                     </Link>
                 </div>
 
-                {/*Nav desktop*/}
-                <div className="hidden md:flex gap-5">
+                {/*Desktop nav*/}
+                <div className="hidden md:flex items-center gap-3">
                     <Search/>
                     <Button
                         variant="ghost"
                         size="lg"
                         onClick={()=>setIsDark(!isDark)}
-                        className="p-2 hover:bg-neutral-800/60 rounded-xl"
+                        className="p-2 rounded-xl"
                     >
                         {isDark ? <BiMoon/> : <BiSun/>}
                     </Button>
                 </div>
 
-                {/*Nav Mobile*/}
-                <div className="md:hidden flex gap-2">
+                {/*Mobile nav*/}
+                <div className="md:hidden flex items-center gap-3">
                     <Button
                         variant="ghost"
                         size="lg"
                         onClick={()=>setIsDark(!isDark)}
-                        className="p-2 hover:bg-neutral-800/60 rounded-xl"
+                        className="p-2 rounded-xl"
                     >
                         {isDark ? <BiMoon/> : <BiSun/>}
                     </Button>
@@ -70,7 +68,7 @@ export function Header(){
                         variant="ghost"
                         size="lg"
                         onClick={()=>setIsMenuMobileOpen(!isMenuMobileOpen)}
-                        className="p-2 hover:bg-neutral-800/60 rounded-xl"
+                        className="p-2 rounded-xl"
                     >
                         {isMenuMobileOpen ? <BiX/> : <BiMenu/>}
                     </Button>
@@ -78,9 +76,10 @@ export function Header(){
 
             </nav>
 
+            {/*Menu Mobile*/}
             {isMenuMobileOpen && (
                 <div className="md:hidden bg-black fadeInDown overflow-hidden">
-                    <div className="px-4 py-4 space-y-3">
+                    <div className="p-4 space-y-3">
                         {Links.map((link)=>(
                             <Link key={link.href} href={link.href} className="flex items-center gap-2" onClick={()=>setIsMenuMobileOpen(false)}>
                                 <link.icon size={25} /><span className=" font-semibold">{link.label}</span>

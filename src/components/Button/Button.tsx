@@ -2,13 +2,11 @@ import { ComponentProps, ReactNode } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
 const button = tv({
-    base:[
-        "flex items-center justify-center gap-2 duration-200 ease-out whitespace-nowrap cursor-pointer",
-    ],
+    base: ["flex items-center justify-center gap-2 duration-200 ease-out whitespace-nowrap cursor-pointer"],
     variants:{
         variant:{
             primary:"bg-pink-500 hover:bg-pink-600 rounded-lg font-semibold px-3 py-2",
-            ghost:"text-neutral-400 hover:text-white",
+            ghost:"text-neutral-400 hover:text-white hover:bg-neutral-800/60",
         },
         size:{
             sm:"text-sm",

@@ -8,20 +8,18 @@ export const metadata: Metadata = {
   description: "Plataforma de música integrada com Spotify",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+
   return (
     <html lang="pt-BR">
       <body>
           <Header/>
-          <main className="min-h-screen pt-16">
+          <main className="pt-12 md:pt-16">
             {children}
-          </main>  
+          </main>
           <Footer/>
       </body>
     </html>
   );
+
 }
