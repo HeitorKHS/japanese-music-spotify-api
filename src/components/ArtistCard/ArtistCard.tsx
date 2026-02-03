@@ -10,13 +10,13 @@ export function ArtistCard({artist}: ArtistCardProps){
 
     return(
 
-        <div className="relative p-3 rounded-xl transition-colors hover:bg-neutral-800/70">
+        <div className="group relative rounded-xl transition-colors overflow-hidden">
             <div className="relative aspect-square rounded-xl overflow-hidden">
                 <Image
                     src={artist.images?.[0].url || "/img/no_image.png"}
                     alt={artist.name ? `${artist.name}` : "Imagem não encontrado"}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-all duration-300 group-hover:brightness-50"
                 />
             </div>
             <div className="space-y-1 mt-4">
@@ -24,7 +24,7 @@ export function ArtistCard({artist}: ArtistCardProps){
                     <span className="sr-only">Ver perfil de {artist.name}</span>
                 </Link>
                 <h3 className="font-semibold truncate">{artist.name}</h3>
-                <span className="w-full text-sm text-white/50 capitalize truncate">{artist.type}</span>
+                <span className="w-full text-sm text-subtext capitalize truncate">{artist.type}</span>
             </div>
         </div>
 

@@ -6,7 +6,7 @@ const button = tv({
     variants:{
         variant:{
             primary:"bg-pink-500 hover:bg-pink-600 rounded-lg font-semibold px-3 py-2",
-            ghost:"text-neutral-400 hover:text-white hover:bg-neutral-800/60",
+            ghost:"text-subtext hover:text-white hover:bg-neutral-800/60",
         },
         size:{
             sm:"text-sm",

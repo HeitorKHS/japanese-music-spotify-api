@@ -38,7 +38,7 @@ export default async function Section({params}: SectionProps){
 
                         {/*Playlist detail*/}
                         <div className="flex-1">
-                            <span className="text-sm font-semibold text-neutral-400 uppercase tracking-wider">Playlist</span>
+                            <span className="text-sm font-semibold text-subtext uppercase tracking-wider">Playlist</span>
                             <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mt-2 mb-4">{artistsPlaylist.name}</h1>
                         </div>
 
@@ -52,7 +52,7 @@ export default async function Section({params}: SectionProps){
 
                 {/*Playlist artists*/}
                 <section>
-                    <h2 className="text-xl md:text-2xl font-semibold">Artistas <span className="text-neutral-400">({artistsPlaylist.artists.length})</span></h2>
+                    <h2 className="text-xl md:text-2xl font-semibold">Artistas <span className="text-subtext">({artistsPlaylist.artists.length})</span></h2>
                     <ArtistList artists={artistsPlaylist.artists} />
                 </section>
 

@@ -43,7 +43,7 @@ export default async function Discography({params}: DiscographyProps){
                 <div className="absolute bottom-0 left-0 right-0 z-20">
                     <div className="content-container bottom-0 md:pb-5">
                         <span className="text-sm md:text-base font-semibold text-neutral-400 uppercase tracking-wider">Discografia</span>
-                        <Link href={`/artist/${artist?.id}`}><h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mt-2">{artist?.name}</h1></Link>
+                        <Link href={`/artist/${artist?.id}`}><h1 className="text-white text-2xl md:text-4xl lg:text-5xl font-bold mt-2">{artist?.name}</h1></Link>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@ export default async function Discography({params}: DiscographyProps){
             {/*Content*/}
             <div className="content-container py-10 md:py-20">
                 <section>
-                    <h2 className="text-xl md:text-2xl font-semibold">Álbuns <span className="text-neutral-400">({albums.total})</span></h2>
+                    <h2 className="text-xl md:text-2xl font-semibold">Álbuns <span className="text-subtext">({albums.total})</span></h2>
                     <FullDiscography artistId={artist.id} initialAlbums={albums} /> 
                 </section>
             </div>

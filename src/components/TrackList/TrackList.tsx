@@ -18,13 +18,13 @@ export function TrackList({tracks, withImage}: TrackListProps){
             {tracks.length > 0 && (
                 <div className="mt-5">
                     <div>
-                        <div className="hidden sm:flex items-center p-2 text-neutral-400 font-semibold text-sm">
+                        <div className="hidden sm:flex items-center p-2 text-subtext font-semibold text-sm">
                             <div className="w-5"><span>#</span></div>
                             <div className="flex-1"><span>Título</span></div>
                             <div><IoMdTime size={20} /></div>
                         </div>
                         {tracks.map((track, index) => (
-                            <div key={track.id} className="flex items-center p-2 gap-2 transition-colors duration-500 hover:bg-neutral-800/70 rounded-sm">
+                            <div key={track.id} className="flex items-center p-2 gap-2 transition-colors duration-500 hover:bg-neutral-800/30 dark:hover:bg-neutral-800/70 rounded-sm">
                                 <div className="w-5">{index+1}</div>
                                 <div className="flex-1 overflow-hidden">
                                     <div className="flex items-center gap-3">
@@ -49,7 +49,7 @@ export function TrackList({tracks, withImage}: TrackListProps){
                                                 >
                                                     {track.name}
                                                 </Link>
-                                                <span className="truncate text-neutral-400">
+                                                <span className="truncate text-subtext">
                                                     {track.artists.map((artist) => (
                                                         <span key={artist.id}>
                                                             <Link href={`/artist/${artist.id}`} className="hover:underline">{artist.name}</Link>

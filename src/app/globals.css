@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
@@ -15,22 +17,26 @@ input[type="search"]::-ms-clear {
 }
 
 :root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --subtext: #525252;
+  color-scheme: light;
+}
+
+.dark {
   --background: #171717;
   --foreground: #ffffff;
+  --subtext: #a1a1a1;
+  color-scheme: dark;
 }
+
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-subtext: var(--subtext);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 @layer components {

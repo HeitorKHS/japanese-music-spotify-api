@@ -53,7 +53,7 @@ export default async function Album({params}: AlbumProps){
 
                         {/*Album detail*/}
                         <div className="flex-1">
-                            <span className="text-sm md:text-base font-semibold text-neutral-400 uppercase tracking-wider">
+                            <span className="text-sm md:text-base font-semibold text-subtext uppercase tracking-wider">
                                 {album?.artists.map((artist, index) => (
                                     <span key={artist.id} className="hover:text-white transition duration-500">
                                         <Link href={`/artist/${artist.id}`} >{artist.name}</Link>
@@ -62,7 +62,7 @@ export default async function Album({params}: AlbumProps){
                                 ))}
                             </span>
                             <h1 className="mt-2 text-2xl md:text-4xl lg:text-5xl font-bold">{album?.name}</h1>
-                            <div className="mt-2 hidden md:flex flex-wrap items-center gap-2 text-sm md:text-base text-neutral-400">
+                            <div className="mt-2 hidden md:flex flex-wrap items-center gap-2 text-sm md:text-base text-subtext">
                                 <span>{album && new Date(album.release_date).getFullYear()} ・</span>
                                 <span>{album?.total_tracks} Músicas・</span>
                                 <span>{album && AlbumDuration(album.tracks.items)}</span>
@@ -91,7 +91,7 @@ export default async function Album({params}: AlbumProps){
                 
                 {/*Album Tracks*/}
                 <section>
-                    <h2 className="text-xl md:text-2xl font-semibold">Músicas  <span className="text-neutral-400">({album.tracks.items.length})</span></h2>
+                    <h2 className="text-xl md:text-2xl font-semibold">Músicas  <span className="text-subtext">({album.tracks.items.length})</span></h2>
                     <TrackList tracks={album?.tracks.items} withImage={false}/>
                 </section>
 

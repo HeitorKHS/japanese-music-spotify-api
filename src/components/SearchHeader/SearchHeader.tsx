@@ -19,7 +19,7 @@ export function SearchHeader(){
 
     return(
 
-        <header className="fixed left-0 right-0 bg-neutral-900 z-20">
+        <header className="fixed left-0 right-0 bg-background z-20">
 
             <nav className="relative header-container py-4 flex items-center justify-center flex-col">
 
@@ -31,7 +31,7 @@ export function SearchHeader(){
 
                         return(
                             <Link key={link.href} href={link.href} className={`rounded-full text-sm md:text-base py-1 px-4 
-                                ${isAction ? "bg-white text-black" : "bg-neutral-700/70 text-white hover:bg-neutral-600"}`}
+                                ${isAction ? "bg-foreground text-background" : "dark:bg-neutral-700/70 text-foreground border dark:hover:bg-neutral-600"}`}
                             >
                                 {link.label}
                             </Link>

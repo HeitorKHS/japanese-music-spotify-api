@@ -46,7 +46,7 @@ export default async function Artist({params}: ArtistProps){
                 {/*Artist Info*/}
                 <div className="absolute bottom-0 left-0 right-0 z-20">
                     <div className="content-container pb-5">
-                        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-5">{artist?.name}</h1>
+                        <h1 className="text-white text-2xl md:text-4xl lg:text-5xl font-bold mb-5">{artist?.name}</h1>
                         <div className="hidden md:flex flex-wrap items-center gap-5 text-neutral-400 mb-5">
                             <div className="flex items-center gap-3">
                                 <LuTrendingUp/>

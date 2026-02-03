@@ -17,12 +17,11 @@ export default async function Artists({searchParams}: ArtistsProps){
 
         return(
 
-            <div className="min-h-[calc(100dvh-48px)] md:min-h-[calc(100dvh-64px)]">
-                <div className="flex justify-center items-center">
-                    <p>Busque por artistas, álbuns ou músicas (ex: Aimyon, Aimer).</p>
-                </div>             
+            <div className="min-h-[calc(100dvh-48px)] md:min-h-[calc(100dvh-64px)] flex items-center justify-center flex-col">
+                <div className="content-container">
+                    <p className="text-center">Busque por artistas, álbuns ou músicas (ex: Aimyon, Aimer).</p>
+                </div>
             </div>
-
         )
 
     }
@@ -39,7 +38,7 @@ export default async function Artists({searchParams}: ArtistsProps){
                 ):(
                     <div className="flex flex-col">
                         <h2 className="text-xl md:text-3xl font-bold text-center mt-5">Nenhum resultado.</h2>
-                        <p className="text-neutral-400 text-center mt-5">Tente uma nova busca</p>
+                        <p className="text-subtext text-center mt-5">Tente uma nova busca</p>
                     </div>
                 )}
             </div>

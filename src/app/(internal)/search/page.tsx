@@ -40,7 +40,7 @@ export default async function Search({searchParams}: SearchProps){
             {artists.length <= 0 ? (
                 <div className="flex flex-col">
                     <h2 className="text-xl md:text-3xl font-bold text-center mt-5">Nenhum resultado.</h2>
-                    <p className="text-neutral-400 text-center mt-5">Tente uma nova busca</p>
+                    <p className="text-subtext text-center mt-5">Tente uma nova busca</p>
                 </div>
             ):(
                 <div className="content-container my-10">

@@ -11,11 +11,13 @@ export default async function Home() {
 
     <div>
       <Hero/>
-      <Carousel title="Artista populares" artists={tokyoArtists.artists} link={`/section/${tokyoArtists.href}`}/>
-      <Carousel title="Melhor do rock" artists={rockArtists.artists} link={`/section/${rockArtists.href}`}/>
-      <Carousel title="Apenas mulheres" artists={womenArtists.artists} link={`/section/${womenArtists.href}`}/>
-      <Carousel title="Destaques do rap" artists={rapArtists.artists} link={`/section/${rapArtists.href}`}/>
-      <Carousel title="Indie Japonês" artists={indieArtists.artists} link={`/section/${indieArtists.href}`}/>
+      <div className="py-10 md:py-20">
+        <Carousel title="Artista populares" artists={tokyoArtists.artists} link={`/section/${tokyoArtists.href}`}/>
+        <Carousel title="Melhor do rock" artists={rockArtists.artists} link={`/section/${rockArtists.href}`}/>
+        <Carousel title="Apenas mulheres" artists={womenArtists.artists} link={`/section/${womenArtists.href}`}/>
+        <Carousel title="Destaques do rap" artists={rapArtists.artists} link={`/section/${rapArtists.href}`}/>
+        <Carousel title="Indie Japonês" artists={indieArtists.artists} link={`/section/${indieArtists.href}`}/>
+      </div>
     </div>
     
   );

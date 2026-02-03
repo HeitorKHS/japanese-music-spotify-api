@@ -27,7 +27,7 @@ export function Search(){
     return(
 
         <div className="relative">
-            <BiSearch className="absolute left-2 top-1/2 -translate-y-1/2"/>
+            <BiSearch className="absolute left-2 top-1/2 -translate-y-1/2 text-foreground"/>
             <label htmlFor="search-input" className="sr-only">Buscar artistas, músicas ou álbuns...</label>
             <input 
                 type="search" 
@@ -35,7 +35,7 @@ export function Search(){
                 value={value}
                 onChange={(e)=>setValue(e.target.value)}
                 onKeyDown={handleEnter}
-                className="px-8 py-1 rounded-xl bg-neutral-900 border border-neutral-700 focus:border-pink-500 focus:outline-none transition-all duration-400"
+                className="px-8 py-1 rounded-xl text-subtext bg-background border border-neutral-700 focus:border-pink-500 focus:outline-none transition-colors duration-400"
             />
             {value && (
                 <Button

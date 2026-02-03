@@ -6,7 +6,6 @@ import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-i
 import { ArtistCard } from "../ArtistCard/ArtistCard";
 import Link from "next/link";
 import { Button } from "../Button/Button";
-import { LuUserRoundX } from "react-icons/lu";
 
 interface CarouselProps{
     title: string,
@@ -30,13 +29,13 @@ export function Carousel({title, artists, link}: CarouselProps){
     const maxIndex = useMemo(() => Math.max(0, artists.length - itemsVisible),[artists.length, itemsVisible]);
     
     const itemWidth = useMemo(() => {
-        const totalGapsWidth = (itemsVisible - 1) * 4; 
+        const totalGapsWidth = (itemsVisible - 1) * 16; 
         return (containerWidth - totalGapsWidth) / itemsVisible;
     }, [containerWidth, itemsVisible]);
 
     const totalWidth = useMemo(() => {
         const totalItemsSize = artists.length * itemWidth;
-        const totalGapsSize = (artists.length - 1) * 4;
+        const totalGapsSize = (artists.length - 1) * 16;
         return totalItemsSize + totalGapsSize;
     }, [artists.length, itemWidth]);
 
@@ -94,7 +93,7 @@ export function Carousel({title, artists, link}: CarouselProps){
 
     const moveToIndex = useCallback((newIndex: number) => {
         setIndex(newIndex);
-        const targetTranslateX = newIndex * (itemWidth + 4);
+        const targetTranslateX = newIndex * (itemWidth + 16);
         setTranslateX(Math.min(targetTranslateX, maxTranslate));
     }, [itemWidth, maxTranslate]);
 
@@ -173,16 +172,16 @@ export function Carousel({title, artists, link}: CarouselProps){
 
         <>
             {artists.length > 0 && (           
-                <section className="pt-5 pb-10" aria-label={title}>
+                <section className="pt-10" aria-label={title}>
                     <div className="content-container flex items-end justify-between">
                         <h2 className="text-xl md:text-2xl font-semibold">{title}</h2>
                         {artists.length > 0 && (
-                            <Link href={link} className="text-sm md:text-base hover:text-white hover:underline text-white/60"> Mostrar tudo</Link>
+                            <Link href={link} className="text-sm md:text-base hover:text-foreground hover:underline text-subtext"> Mostrar tudo</Link>
                         )}
                     </div>
-                    <div className="mt-2 md:mt-5">
+                    <div className="mt-2">
                         <div className="content-container relative overflow-x-hidden">
-                            <div className={`flex gap-1 select-none
+                            <div className={`flex gap-4 select-none
                                 ${isDragging ? '' : 'transition-transform duration-300 ease-out'} `}
                                 style={{transform: `translateX(-${translateX}px)`}}
                                 ref={carouselRef}
@@ -191,7 +190,7 @@ export function Carousel({title, artists, link}: CarouselProps){
                             >
                                 {artists.map((artist) => (
                                     <div key={artist.id} className="shrink-0"
-                                        style={{ width: `calc((100% - (${itemsVisible-1} * 4px)) / ${itemsVisible})` }}
+                                        style={{ width: `calc((100% - (${itemsVisible-1} * 16px)) / ${itemsVisible})` }}
                                     >
                                         <ArtistCard artist={artist}/>
                                     </div>
@@ -201,7 +200,7 @@ export function Carousel({title, artists, link}: CarouselProps){
                                 <Button
                                     variant="ghost"
                                     aria-label="Anterior"
-                                    className={`group absolute inset-y-0 left-0 min-w-30 rounded-r-xl transition-opacity duration-300 
+                                    className={`group absolute inset-y-0 left-0 min-w-26 rounded-r-xl transition-opacity duration-300 
                                         ${index === 0 ? "opacity-0 pointer-events-none" : "opacity-100"}`}
                                     onClick={handlePrev}
                                     disabled={index === 0}
@@ -211,7 +210,7 @@ export function Carousel({title, artists, link}: CarouselProps){
                                 <Button
                                     variant="ghost"
                                     aria-label="Próximo"
-                                    className={`group absolute inset-y-0 right-0 min-w-30 rounded-l-xl transition-opacity duration-300 opacity-100
+                                    className={`group absolute inset-y-0 right-0 min-w-26 rounded-l-xl transition-opacity duration-300 opacity-100
                                         ${index === maxIndex ? "opacity-0 pointer-events-none" : "opacity-100"}`}
                                     onClick={handleNext}
                                     disabled={index === maxIndex}

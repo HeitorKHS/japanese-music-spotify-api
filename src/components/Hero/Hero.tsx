@@ -41,7 +41,7 @@ export function Hero(){
                     <span>Explore o </span>
                     <span className="bg-linear-to-r from-pink-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">Universo Musical do Japão</span>
                 </h1>
-                <span className="mb-10 text-lg md:text-xl text-neutral-400">Explore artistas, álbuns e músicas do Japão. Encontre tudo sobre seus artistas favoritos.</span>
+                <span className="mb-10 text-lg md:text-xl text-subtext">Explore artistas, álbuns e músicas do Japão. Encontre tudo sobre seus artistas favoritos.</span>
             </div>
 
         </section>

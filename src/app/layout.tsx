@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "../components/Header/Header";
 import { Footer } from "../components/Footer/Footer";
+import { ThemeProvider } from "../providers/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "J-Music",
@@ -11,13 +12,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body>
-          <Header/>
-          <main className="pt-12 md:pt-16">
-            {children}
-          </main>
-          <Footer/>
+          <ThemeProvider>
+            <Header/>
+              <main className="pt-12 md:pt-16">
+                {children}
+              </main>
+            <Footer/>
+          </ThemeProvider>
       </body>
     </html>
   );

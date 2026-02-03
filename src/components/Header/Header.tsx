@@ -5,7 +5,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "../Button/Button";
 import { Search } from "../Search/Search";
-import { BiSun, BiMoon, BiMenu, BiX, BiHome, BiSearch  } from "react-icons/bi";
+import { BiMenu, BiX, BiHome, BiSearch  } from "react-icons/bi";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 
 interface Links{
     href: string,
@@ -15,7 +16,6 @@ interface Links{
 
 export function Header(){
 
-    const [isDark, setIsDark] = useState<boolean>(false);
     const [isMenuMobileOpen, setIsMenuMobileOpen] = useState<boolean>(false);
 
     const Links: readonly Links[] = [
@@ -25,7 +25,7 @@ export function Header(){
 
     return(
 
-        <header className="fixed top-0 left-0 right-0 z-50 bg-black">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-background">
             <nav className="relative header-container h-12 md:h-16 flex items-center justify-between">
 
                 {/*Logo*/}
@@ -44,26 +44,12 @@ export function Header(){
                 {/*Desktop nav*/}
                 <div className="hidden md:flex items-center gap-3">
                     <Search/>
-                    <Button
-                        variant="ghost"
-                        size="lg"
-                        onClick={()=>setIsDark(!isDark)}
-                        className="p-2 rounded-xl"
-                    >
-                        {isDark ? <BiMoon/> : <BiSun/>}
-                    </Button>
+                    <ThemeToggle/>
                 </div>
 
                 {/*Mobile nav*/}
                 <div className="md:hidden flex items-center gap-3">
-                    <Button
-                        variant="ghost"
-                        size="lg"
-                        onClick={()=>setIsDark(!isDark)}
-                        className="p-2 rounded-xl"
-                    >
-                        {isDark ? <BiMoon/> : <BiSun/>}
-                    </Button>
+                    <ThemeToggle/>
                     <Button
                         variant="ghost"
                         size="lg"
@@ -78,11 +64,11 @@ export function Header(){
 
             {/*Menu Mobile*/}
             {isMenuMobileOpen && (
-                <div className="md:hidden bg-black fadeInDown overflow-hidden">
+                <div className="md:hidden bg-background fadeInDown overflow-hidden">
                     <div className="p-4 space-y-3">
                         {Links.map((link)=>(
                             <Link key={link.href} href={link.href} className="flex items-center gap-2" onClick={()=>setIsMenuMobileOpen(false)}>
-                                <link.icon size={25} /><span className=" font-semibold">{link.label}</span>
+                                <link.icon size={25} /><span className="font-semibold">{link.label}</span>
                             </Link>
                         ))}
                     </div>
